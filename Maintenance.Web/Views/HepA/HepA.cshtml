@@ -1,0 +1,19 @@
+﻿@model Maintenance.Models.OtpRequest
+
+<h3 class="main_header">Banducci Enterprises</h3>
+<hr />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <button id="StJohns">St John's</button>
+
+    <div id="HepA_Results">
+
+    </div>
+
+}
+
+else
+{
+    @Html.ActionLink("Please log in", "Login", "Account")
+}

@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HepA.cs" />
     <Compile Include="MaintenanceLog.cs" />
     <Compile Include="OtpRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

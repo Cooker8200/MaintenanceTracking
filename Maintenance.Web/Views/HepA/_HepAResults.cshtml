@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Maintenance.Models.HepA>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstShot)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondShot)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmpName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstShot)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondShot)
+        </td>
+    </tr>
+}
+
+</table>
