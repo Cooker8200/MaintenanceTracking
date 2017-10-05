@@ -1,0 +1,32 @@
+﻿<h3 class="main_header">Banducci Enterprises</h3>
+<hr />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h4>Maintenance Home</h4>
+
+    <h6>What would you like to do?</h6>
+
+    <div class="col-md-6">
+        <a href="@Url.Action("MaintenanceRecords", "Maintenance")" id="otp_button">See all records</a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="@Url.Action("MaintenanceSearch", "Maintenance")" id="otp_button">Search records</a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="@Url.Action("Create", "Maintenance")" id="otp_button">Add record</a>
+    </div>
+
+    <div class="col-md-6">
+        <a href="@Url.Action("EditRecord", "Maintenance")" id="otp_button">Edit Record</a>
+    </div>
+
+    @Styles.Render("~/Content/MainPageButton.css")
+}
+
+else
+{
+    @Html.ActionLink("Please log in", "Login", "Account")
+}

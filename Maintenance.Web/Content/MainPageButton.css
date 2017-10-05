@@ -1,0 +1,10 @@
+﻿#otp_button {
+    display: block !important;
+    background-color: lightblue !important;
+    text-align: center !important;
+    padding: 10% !important;
+    margin: 15% !important;
+    border-radius: 10px !important;
+    color: black !important;
+    font-weight: bold !important;
+}
