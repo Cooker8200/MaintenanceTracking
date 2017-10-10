@@ -46,9 +46,9 @@ C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\bin\Debug\System.
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\bin\Debug\System.Web.WebPages.xml
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.csprojResolveAssemblyReference.cache
-C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.InitialCreate.resources
-C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.update.resources
-C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.updatetwo.resources
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.csproj.GenerateResource.Cache
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.dll
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.pdb
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.ServSafe.resources
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.servsafe_change.resources
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.none.resources

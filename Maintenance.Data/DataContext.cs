@@ -16,5 +16,9 @@ namespace Maintenance.Data
         }
 
         public DbSet<MaintenanceLog> MaintenanceLog { get; set; }
+
+        public DbSet<HepA> HepA { get; set; }
+
+        public DbSet<ServSafe> ServSafe { get; set; }
     }
 }

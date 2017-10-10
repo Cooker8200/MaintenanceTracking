@@ -53,38 +53,20 @@
   <ItemGroup>
     <Compile Include="DataAccess\DataManager.cs" />
     <Compile Include="DataContext.cs" />
-    <Compile Include="DataTest.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataTest.Context.tt</DependentUpon>
+    <Compile Include="Migrations\201710102054352_ServSafe.cs" />
+    <Compile Include="Migrations\201710102054352_ServSafe.Designer.cs">
+      <DependentUpon>201710102054352_ServSafe.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataTest.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataTest.tt</DependentUpon>
+    <Compile Include="Migrations\201710102126376_servsafe_change.cs" />
+    <Compile Include="Migrations\201710102126376_servsafe_change.Designer.cs">
+      <DependentUpon>201710102126376_servsafe_change.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataTest.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DataTest.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201709080142052_InitialCreate.cs" />
-    <Compile Include="Migrations\201709080142052_InitialCreate.Designer.cs">
-      <DependentUpon>201709080142052_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710050019248_update.cs" />
-    <Compile Include="Migrations\201710050019248_update.Designer.cs">
-      <DependentUpon>201710050019248_update.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201710050138455_updatetwo.cs" />
-    <Compile Include="Migrations\201710050138455_updatetwo.Designer.cs">
-      <DependentUpon>201710050138455_updatetwo.cs</DependentUpon>
+    <Compile Include="Migrations\201710102134497_none.cs" />
+    <Compile Include="Migrations\201710102134497_none.Designer.cs">
+      <DependentUpon>201710102134497_none.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="sp_SearchDates_Result.cs">
-      <DependentUpon>DataTest.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maintenance.Models\Maintenance.Models.csproj">
@@ -94,37 +76,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <EntityDeploy Include="DataTest.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DataTest.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="DataTest.edmx.diagram">
-      <DependentUpon>DataTest.edmx</DependentUpon>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201709080142052_InitialCreate.resx">
-      <DependentUpon>201709080142052_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710102054352_ServSafe.resx">
+      <DependentUpon>201710102054352_ServSafe.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710050019248_update.resx">
-      <DependentUpon>201710050019248_update.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710102126376_servsafe_change.resx">
+      <DependentUpon>201710102126376_servsafe_change.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201710050138455_updatetwo.resx">
-      <DependentUpon>201710050138455_updatetwo.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201710102134497_none.resx">
+      <DependentUpon>201710102134497_none.cs</DependentUpon>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DataTest.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataTest.edmx</DependentUpon>
-      <LastGenOutput>DataTest.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="DataTest.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DataTest.edmx</DependentUpon>
-      <LastGenOutput>DataTest.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

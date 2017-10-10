@@ -201,6 +201,7 @@
     <Compile Include="Controllers\MaintenanceController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OTPController.cs" />
+    <Compile Include="Controllers\ServSafeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -231,6 +232,7 @@
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\HepAScripts.js" />
+    <Content Include="Scripts\HepA_List.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -239,10 +241,12 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\MainPageButton.js" />
+    <Content Include="Scripts\MaintenanceEdit.js" />
     <Content Include="Scripts\MaintenanceScript.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\ServSafeScript.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -294,6 +298,9 @@
     <Content Include="Views\Maintenance\_SearchDates.cshtml" />
     <Content Include="Views\HepA\HepA.cshtml" />
     <Content Include="Views\HepA\_HepAResults.cshtml" />
+    <Content Include="Views\Maintenance\_EditResults.cshtml" />
+    <Content Include="Views\ServSafe\ServSafeHome.cshtml" />
+    <Content Include="Views\ServSafe\_ServSafeResults.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -310,10 +317,6 @@
     <ProjectReference Include="..\Maintenance.Business\Maintenance.Business.csproj">
       <Project>{98792CB2-DEA9-4F30-8CFE-3810801184E6}</Project>
       <Name>Maintenance.Business</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Maintenance.Data\Maintenance.Data.csproj">
-      <Project>{4171c5c3-6236-4819-8b1d-067da4b5799e}</Project>
-      <Name>Maintenance.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\Maintenance.Models\Maintenance.Models.csproj">
       <Project>{D8C5B4BB-47CC-4D49-A48D-46E4B17340F1}</Project>

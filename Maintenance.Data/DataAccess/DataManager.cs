@@ -12,7 +12,7 @@ namespace Maintenance.Data.DataAccess
     {
         private DataContext db = new DataContext();
 
-        public Data.Entities dbtwo = new Data.Entities();
+        //public Data.Entities dbtwo = new Data.Entities();
 
         public IEnumerable<MaintenanceLog> List()
         {
@@ -92,6 +92,24 @@ namespace Maintenance.Data.DataAccess
             var DataRepairType = db.MaintenanceLog.Where(x => x.RepairType.Contains(repairtext));
             return DataRepairType;
 
+        }
+
+        public IEnumerable<MaintenanceLog> StoreRecordsEdit (string edittext)
+        {
+            var DataEditRequest = db.MaintenanceLog.Where(x => x.StoreName.Contains(edittext));
+            return DataEditRequest;
+        }
+
+        public IEnumerable<HepA> HepARecords (string searchtext)
+        {
+            var DataHepA = db.HepA.Where(x => x.Store.Contains(searchtext));
+            return DataHepA;
+        }
+
+        public IEnumerable<ServSafe> ServSafeData(string searchtext)
+        {
+            var DataServSafe = db.ServSafe.Where(x => x.Store.Contains(searchtext));
+            return DataServSafe;
         }
 
 

@@ -18,5 +18,10 @@ namespace Maintenance.Models
 
         public DateTime SecondShot { get; set; }
 
+        public string Store { get; set; }
+
+
+
+
     }
 }

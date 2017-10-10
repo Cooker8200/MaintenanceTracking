@@ -1,0 +1,26 @@
+﻿@model Maintenance.Models.HepA
+
+<h3 class="main_header">Banducci Enterprises</h3>
+<hr />
+
+@if (User.Identity.IsAuthenticated)
+{
+    <h4>Choose Store:</h4>
+    <div id="list">
+
+    </div>
+    <button id="ss_search" class="btn btn-success">Go!</button>
+
+    <div id="ss_results">
+
+    </div>
+
+}
+
+else
+{
+    @Html.ActionLink("Please log in", "Login", "Account")
+}
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/ServSafeScript.js")

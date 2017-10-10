@@ -28,6 +28,26 @@
             <a href="@Url.Action("OtpRequest", "OTP")" id="otp_button">Start an OTP Help Request</a>
 
         </div>
+
+        <div class="col-md-6" id="login_box">
+
+            <h4 style="margin-left: 10%; font-weight: 400;">Hep A Records</h4>
+
+            @*@Html.ActionLink("Create a New Help Request", "OtpRequest", "OTP")*@
+
+            <a href="@Url.Action("HepAHome", "HepA")" id="otp_button">Hep A Records</a>
+
+        </div>
+
+        <div class="col-md-6" id="login_box">
+
+            <h4 style="margin-left: 10%; font-weight: 400;">ServSafe Records</h4>
+
+            @*@Html.ActionLink("Create a New Help Request", "OtpRequest", "OTP")*@
+
+            <a href="@Url.Action("ServSafeHome", "ServSafe")" id="otp_button">ServSafe Records</a>
+
+        </div>
     </div>
 }
 

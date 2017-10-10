@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Maintenance.Data;
 
 namespace Maintenance.Web.Controllers
 {
@@ -35,11 +34,6 @@ namespace Maintenance.Web.Controllers
         }
 
         public ActionResult Create()
-        {
-            return View();
-        }
-
-        public ActionResult Edit()
         {
             return View();
         }
@@ -109,5 +103,27 @@ namespace Maintenance.Web.Controllers
             var RepairTypeRecords = _maintenanceManager.VendorSearch(repairtext);
             return View("StoreSearchResults", RepairTypeRecords);
         }
+
+        public ActionResult Edit()
+        {
+            Maintenance.Models.Stores model = new Stores();
+            //Maintenance.Models.OtpRequest model = new Maintenance.Models.OtpRequest();
+            //IEnumerable<Maintenance.Models.Store> Store = Enum.GetValues(typeof(Maintenance.Models.Store)).Cast<Maintenance.Models.Store>();
+            //model.Store = from name in Store
+            //              select new SelectListItem
+            //              {
+
+            //                  Text = name.ToString(),                    //todo implement desctiption tags
+            //                  //Text = GetDescription((Maintenance.Models.Store).Enum.Parse(typeof(Maintenance.Models.Store).,
+            //                  Value = ((int)name).ToString()
+            //              };
+            return View(model);
+        }
+
+        //public ActionResult EditStoreRecords(OtpRequest model)
+        //{
+        //    var IdToString = ((Store).Enum.ToObject(typeof(Store), model.StoreId)).ToString();
+        //    //var IdToString = ((Store)Enum.ToObject(typeof(Store), model.StoreId)).ToString();
+        //}
     }
 }

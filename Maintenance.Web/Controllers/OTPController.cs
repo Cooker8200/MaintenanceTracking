@@ -18,7 +18,7 @@ namespace Maintenance.Web.Controllers
 
         private ContactManager _contact;
 
-        public static string GetDescription(Enum en)
+        public static string GetDescription(Enum en)  //todo
         {
             Type type = en.GetType();
             MemberInfo[] memInfo = type.GetMember(en.ToString());
@@ -45,7 +45,7 @@ namespace Maintenance.Web.Controllers
                           {
 
                               Text = name.ToString(),                    //todo implement desctiption tags
-                              //Text = GetDescription((Maintenance.Models.Store).Enum.Parse(typeof(Maintenance.Models.Store).,
+                              //Text = GetDescription(),
                               Value = ((int)name).ToString()
                           };
             IEnumerable<Maintenance.Models.Equipment> Equipment = Enum.GetValues(typeof(Maintenance.Models.Equipment)).Cast<Maintenance.Models.Equipment>();

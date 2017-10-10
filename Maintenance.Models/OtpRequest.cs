@@ -19,6 +19,7 @@ namespace Maintenance.Models
 
             Location = new List<SelectListItem>();
         }
+
         public int StoreId { get; set; }
         public IEnumerable<SelectListItem> Store { get; set; }
         [Required]

@@ -1,13 +1,24 @@
-﻿@model Maintenance.Models.OtpRequest
+﻿@model Maintenance.Models.HepA
 
 <h3 class="main_header">Banducci Enterprises</h3>
 <hr />
 
 @if (User.Identity.IsAuthenticated)
 {
-    <button id="StJohns">St John's</button>
+    <h4>Choose Store:</h4>
+    <div id="list">
 
-    <div id="HepA_Results">
+    </div>
+    <button id="hep_search" class="btn btn-primary">Go!</button>
+
+    @*<div>
+        @using (Html.BeginForm("Search", "HepA", FormMethod.Get)) { 
+            <input type="text" name="searchtext" value="searchtext" />
+            <button type="submit">Go!</button>
+        }
+    </div>*@
+
+    <div id="hepa_results">
 
     </div>
 
@@ -17,3 +28,6 @@ else
 {
     @Html.ActionLink("Please log in", "Login", "Account")
 }
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/HepA_List.js")
