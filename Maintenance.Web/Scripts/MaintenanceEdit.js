@@ -1,6 +1,7 @@
 ﻿$(document).ready(function () {
 
     var stores = {
+       
         "Store": "University City",
         "Store1": "Ballwin",
         "Store2": "Dorsett",
@@ -14,7 +15,8 @@
         "Store10": "Earth City",
         "Store11": "Creve Coeur",
         "Store11": "St Johns",
-        "Store12": "Ellisville"
+        "Store12": "Ellisville",
+        "Store13": "Office"
     }
 
     var s = $("<select/>");

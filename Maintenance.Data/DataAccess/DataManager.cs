@@ -114,7 +114,7 @@ namespace Maintenance.Data.DataAccess
 
         public IEnumerable<MaintenanceLog> EditSearch (string searchtext1, string searchtext2)
         {
-            var DataEditSearch = db.Database.SqlQuery<MaintenanceLog>("mainsp_editsearch " + " ' " + searchtext1 + " ' " + " , " + " ' " + searchtext2 + " ' ");
+            var DataEditSearch = db.Database.SqlQuery<MaintenanceLog>("mainsp_editsearch " + " '" + searchtext1 + "' " + " , " + " '" + searchtext2 + "' ");
             //var DataEditSearch = db.MaintenanceLog.Where(x => x.StoreName.Contains(searchtext1));
             return DataEditSearch;
         }
