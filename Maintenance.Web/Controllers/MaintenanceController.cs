@@ -106,18 +106,19 @@ namespace Maintenance.Web.Controllers
 
         public ActionResult Edit()
         {
-            Maintenance.Models.Stores model = new Stores();
-            //Maintenance.Models.OtpRequest model = new Maintenance.Models.OtpRequest();
-            //IEnumerable<Maintenance.Models.Store> Store = Enum.GetValues(typeof(Maintenance.Models.Store)).Cast<Maintenance.Models.Store>();
-            //model.Store = from name in Store
-            //              select new SelectListItem
-            //              {
+            return View();
+        }
 
-            //                  Text = name.ToString(),                    //todo implement desctiption tags
-            //                  //Text = GetDescription((Maintenance.Models.Store).Enum.Parse(typeof(Maintenance.Models.Store).,
-            //                  Value = ((int)name).ToString()
-            //              };
-            return View(model);
+        public ActionResult EditStepTwo()
+        {
+            return PartialView("_EditStepTwo");
+        }
+
+        public ActionResult EditReturnRecords(string searchtext1, string searchtext2)
+        {
+            var EditResults = _maintenanceManager.EditSearch(searchtext1, searchtext2);
+            return View("_EditResults", EditResults);
+
         }
 
         //public ActionResult EditStoreRecords(OtpRequest model)

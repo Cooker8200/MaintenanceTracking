@@ -174,7 +174,7 @@ C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Web\bin\Microsoft.Owin
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Web\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Web\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Web\obj\Debug\Maintenance.Web.csprojResolveAssemblyReference.cache
-C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Web\obj\Debug\Maintenance.Web.Migrations.update.resources
-C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Web\obj\Debug\Maintenance.Web.csproj.GenerateResource.Cache
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Web\obj\Debug\Maintenance.Web.dll
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Web\obj\Debug\Maintenance.Web.pdb
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Web\obj\Debug\Maintenance.Web.Migrations.update.resources
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Web\obj\Debug\Maintenance.Web.csproj.GenerateResource.Cache

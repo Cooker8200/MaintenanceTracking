@@ -51,5 +51,11 @@ namespace Maintenance.Business
             var ManagerRepairRecords = _dataAccess.RepairTypeSearch(repairtext);
             return ManagerRepairRecords;
         }
+
+        public IEnumerable<MaintenanceLog> EditSearch (string searchtext1, string searchtext2)
+        {
+            var ManagerEditSearch = _dataAccess.EditSearch(searchtext1, searchtext2);
+            return ManagerEditSearch;
+        }
     }
 }

@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    //dropdown list for HepA shot search
+    //dropdown list for ServSafe records
     var stores = {
         "Store": "University City",
         "Store1": "Ballwin",

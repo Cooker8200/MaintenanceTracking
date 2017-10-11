@@ -21,7 +21,7 @@ namespace Maintenance.Web.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("LogAccess", throwIfV1Schema: false)
         {
         }
 

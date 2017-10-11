@@ -3,22 +3,20 @@
 <h3 class="main_header">Banducci Enterprises</h3>
 <hr />
 
-<h5>Search By Store First</h5>
+<h5>How do you want to search?</h5>
+<div id="search_method">
+    <!-- insert javascript for selection, ajax call to proceed to next step -->
+    <button id="edit_search" class="btn btn-succes">GO!</button>
+</div>
 
-<h5>Choose from below:</h5>
-<button class="btn btn-group" style="text-align: center;">
-    <p class="btn btn-default" id="search_store">Search By Store</p>
-    <p class="btn btn-default" id="search_date">Search by Date</p>
-    <p class="btn btn-default" id="search_vendor">Search by Vendor</p>
-    <p class="btn btn-default" id="search_type">Search by Repair Type</p>
-</button>
-
-<div id="search_field">
+<div id="edit_step2">
+    <!-- second step where we choose repair type passed in through ajax call -->
 
 </div>
 
-<div id="edit_results">
+<div id="search_results">
 
 </div>
 
+@Scripts.Render("~/bundles/jquery")
 @Scripts.Render("~/Scripts/MaintenanceEdit.js")

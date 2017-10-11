@@ -231,6 +231,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\EditStepTwo.js" />
     <Content Include="Scripts\HepAScripts.js" />
     <Content Include="Scripts\HepA_List.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -301,6 +302,7 @@
     <Content Include="Views\Maintenance\_EditResults.cshtml" />
     <Content Include="Views\ServSafe\ServSafeHome.cshtml" />
     <Content Include="Views\ServSafe\_ServSafeResults.cshtml" />
+    <Content Include="Views\Maintenance\_EditStepTwo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
