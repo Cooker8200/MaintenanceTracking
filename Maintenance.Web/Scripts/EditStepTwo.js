@@ -18,7 +18,7 @@
     $("#repair_searchbutton").click(function (searchtext1, searchtext2) {
         var searchtext1 = $("#storename").find(":selected").text();
         var searchtext2 = $(p).find(":selected").text();
-        alert(searchtext1, searchtext2);
+        //alert(searchtext1, searchtext2);
         $.ajax({
             data: { "searchtext1": searchtext1, "searchtext2": searchtext2 },
             url: '/Maintenance/EditReturnRecords',

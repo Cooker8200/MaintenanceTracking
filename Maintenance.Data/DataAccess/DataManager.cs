@@ -68,7 +68,7 @@ namespace Maintenance.Data.DataAccess
 
         public IEnumerable<MaintenanceLog> DateSearch(string startdate, string enddate)
         {
-            var DataDateSearch = db.MaintenanceLog.SqlQuery("sp_SearchDates " + startdate + " , " + enddate);
+            var DataDateSearch = db.MaintenanceLog.SqlQuery("mainsp_datesearch " + " ' " + startdate + " ' " + " , " + " ' " + enddate + " ' ");
             //var DataDateSearch = db.MaintenanceLog.Where(startdate <= x => enddate);
             //var DataDateSearch = from d in 
             return DataDateSearch;
@@ -114,7 +114,8 @@ namespace Maintenance.Data.DataAccess
 
         public IEnumerable<MaintenanceLog> EditSearch (string searchtext1, string searchtext2)
         {
-            var DataEditSearch = db.MaintenanceLog.Where(x => x.StoreName.Contains(searchtext1));
+            var DataEditSearch = db.Database.SqlQuery<MaintenanceLog>("mainsp_editsearch " + " ' " + searchtext1 + " ' " + " , " + " ' " + searchtext2 + " ' ");
+            //var DataEditSearch = db.MaintenanceLog.Where(x => x.StoreName.Contains(searchtext1));
             return DataEditSearch;
         }
 
