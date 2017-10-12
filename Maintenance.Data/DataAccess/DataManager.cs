@@ -22,27 +22,6 @@ namespace Maintenance.Data.DataAccess
 
         public void Create(MaintenanceLog MaintenanceLog)
         {
-            //var dbitem = db.MaintenanceLog.FirstOrDefault(x => x.Id == MaintenanceLog.Id);
-            //if (dbitem == null)
-            //{
-            //    var error = "It's broken!";
-            //    Console.WriteLine(error);
-            //}
-            //else if (dbitem != null)
-            //{
-            //    dbitem.Id = MaintenanceLog.Id;
-            //    dbitem.StoreId = MaintenanceLog.StoreId;
-            //    dbitem.ServiceDate = MaintenanceLog.ServiceDate;
-            //    dbitem.VendorName = MaintenanceLog.VendorName;
-            //    dbitem.Invoice = MaintenanceLog.Invoice;
-            //    dbitem.RepairDetail = MaintenanceLog.RepairDetail;
-            //    dbitem.RepairType = MaintenanceLog.RepairType;
-            //    db.SaveChanges();
-            //}
-            //else 
-            //{
-
-            //}
             db.MaintenanceLog.Add(MaintenanceLog);
             db.SaveChanges();
         }
@@ -69,16 +48,8 @@ namespace Maintenance.Data.DataAccess
         public IEnumerable<MaintenanceLog> DateSearch(string startdate, string enddate)
         {
             var DataDateSearch = db.MaintenanceLog.SqlQuery("mainsp_datesearch " + " ' " + startdate + " ' " + " , " + " ' " + enddate + " ' ");
-            //var DataDateSearch = db.MaintenanceLog.Where(startdate <= x => enddate);
-            //var DataDateSearch = from d in 
             return DataDateSearch;
         }
-
-        //public IEnumerable<sp_SearchDates_Result> DateSearch(DateTime startdate, DateTime enddate)
-        //{
-        //    var stored = dbtwo.sp_SearchDates(startdate, enddate);
-        //    return stored;
-        //}
 
         public IEnumerable<MaintenanceLog> VendorSearch(string vendortext)
         {
@@ -117,6 +88,19 @@ namespace Maintenance.Data.DataAccess
             var DataEditSearch = db.Database.SqlQuery<MaintenanceLog>("mainsp_editsearch " + " '" + searchtext1 + "' " + " , " + " '" + searchtext2 + "' ");
             //var DataEditSearch = db.MaintenanceLog.Where(x => x.StoreName.Contains(searchtext1));
             return DataEditSearch;
+        }
+
+        public MaintenanceLog FindRecord (int? id)
+        {
+            var DataRecord = db.MaintenanceLog.Find(id);
+            return DataRecord;
+        }
+
+        public void SaveEdit (MaintenanceLog model)
+        {
+            db.Entry(model).State = EntityState.Modified;
+            db.SaveChanges();
+
         }
 
     }

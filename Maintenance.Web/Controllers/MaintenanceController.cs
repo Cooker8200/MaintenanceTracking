@@ -121,10 +121,25 @@ namespace Maintenance.Web.Controllers
 
         }
 
-        //public ActionResult EditStoreRecords(OtpRequest model)
-        //{
-        //    var IdToString = ((Store).Enum.ToObject(typeof(Store), model.StoreId)).ToString();
-        //    //var IdToString = ((Store)Enum.ToObject(typeof(Store), model.StoreId)).ToString();
-        //}
+        public ActionResult EditRecord (int? id)
+        {
+            var MaintRecord = _maintenanceManager.ManagerFindId(id);
+            return View(MaintRecord);
+        }
+
+        public ActionResult SaveRecord (MaintenanceLog model)
+        {
+            if (ModelState.IsValid)
+            {
+                _maintenanceManager.ManagerSaveEdit(model);
+                return View("Edit");
+            }
+
+            else
+            {
+                return null;  //todo redirect somewhere
+            }
+        }
+
     }
 }

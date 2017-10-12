@@ -57,5 +57,16 @@ namespace Maintenance.Business
             var ManagerEditSearch = _dataAccess.EditSearch(searchtext1, searchtext2);
             return ManagerEditSearch;
         }
+
+        public MaintenanceLog ManagerFindId (int? id)
+        {
+            var ManagerRecord = _dataAccess.FindId(id);
+            return ManagerRecord;
+        }
+
+        public void ManagerSaveEdit(MaintenanceLog model)
+        {
+            _dataAccess.SaveEdit(model);
+        }
     }
 }

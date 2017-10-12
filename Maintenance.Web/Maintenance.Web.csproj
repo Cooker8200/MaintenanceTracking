@@ -303,6 +303,7 @@
     <Content Include="Views\ServSafe\ServSafeHome.cshtml" />
     <Content Include="Views\ServSafe\_ServSafeResults.cshtml" />
     <Content Include="Views\Maintenance\_EditStepTwo.cshtml" />
+    <Content Include="Views\Maintenance\EditRecord.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
