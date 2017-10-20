@@ -86,7 +86,7 @@ namespace Maintenance.Data.DataAccess
         public IEnumerable<MaintenanceLog> EditSearch (string searchtext1, string searchtext2)
         {
             var DataEditSearch = db.Database.SqlQuery<MaintenanceLog>("mainsp_editsearch " + " '" + searchtext1 + "' " + " , " + " '" + searchtext2 + "' ");
-            //var DataEditSearch = db.MaintenanceLog.Where(x => x.StoreName.Contains(searchtext1));
+            //var DataEditSearch = db.MaintenanceLog.Where(x => x.StoreName.Contains(searchtext1) && x.StoreName);  //use and
             return DataEditSearch;
         }
 
@@ -101,6 +101,15 @@ namespace Maintenance.Data.DataAccess
             db.Entry(model).State = EntityState.Modified;
             db.SaveChanges();
 
+        }
+
+        public HepA WeeklyReport()
+        {
+            //todo return null values
+            //var HepA_Weekly = db.HepA.Where(x => x.SecondShot = );  
+            //return HepA_Weekly;
+
+            return null;
         }
 
     }

@@ -29,7 +29,7 @@
 
     $("select").prop('id', 'storename');
 
-    $("#edit_search").click(function (searchtext1) {
+    $("#storename").change(function (searchtext1) {
         var searchtext1 = $(s).find(":selected").text();
         //alert(searchtext);
         $.ajax({

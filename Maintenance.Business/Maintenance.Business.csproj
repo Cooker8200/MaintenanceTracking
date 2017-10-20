@@ -55,6 +55,10 @@
       <Project>{D8C5B4BB-47CC-4D49-A48D-46E4B17340F1}</Project>
       <Name>Maintenance.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Maintenance.Utilities\Maintenance.Utilities.csproj">
+      <Project>{11a7b399-0566-469a-aac3-8d2e0d8a7894}</Project>
+      <Name>Maintenance.Utilities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
