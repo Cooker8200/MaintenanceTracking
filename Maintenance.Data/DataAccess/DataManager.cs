@@ -103,14 +103,27 @@ namespace Maintenance.Data.DataAccess
 
         }
 
-        public HepA WeeklyReport()
+        public Array WeeklyReport()
         {
-            //todo return null values
-            //var HepA_Weekly = db.HepA.Where(x => x.SecondShot = );  
-            //return HepA_Weekly;
+            //var HepA_Weekly = db.HepA.Where(x => x.SecondShot == null).ToList();
+            var HepA_Weekly = db.Database.SqlQuery<HepA>("hepsp_weekly").ToArray();
+            return HepA_Weekly;
 
-            return null;
         }
 
+        public string ServiceAddHepA(string name, DateTime firstshot, DateTime? secondshot, string store)
+        {
+
+                var noSecondShot = new HepA();
+                noSecondShot.EmpName = name;
+                noSecondShot.FirstShot = firstshot;
+                noSecondShot.SecondShot = secondshot;
+                noSecondShot.Store = store;
+                db.HepA.Add(noSecondShot);
+                db.SaveChanges();
+
+            return noSecondShot.EmpName;
+                        
+        }
     }
 }

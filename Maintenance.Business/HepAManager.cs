@@ -22,5 +22,11 @@ namespace Maintenance.Business
             var ManagerHepA = _dataAccess.HepARecords(searchtext);
             return ManagerHepA;
         }
+
+        public Array WeeklyReport()
+        {
+            var WeeklyReport = _dataAccess.WeeklyReport();
+            return WeeklyReport;
+        }
     }
 }

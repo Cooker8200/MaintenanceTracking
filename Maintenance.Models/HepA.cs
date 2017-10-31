@@ -14,9 +14,9 @@ namespace Maintenance.Models
 
         public string EmpName { get; set; }
 
-        public DateTime FirstShot { get; set; }
+        public DateTime? FirstShot { get; set; }
 
-        public DateTime SecondShot { get; set; }
+        public DateTime? SecondShot { get; set; }
 
         public string Store { get; set; }
 

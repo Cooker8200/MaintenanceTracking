@@ -21,3 +21,9 @@ C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Utilities\bin\Debug\Sy
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Utilities\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Utilities\obj\Debug\Maintenance.Utilities.exe
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Utilities\obj\Debug\Maintenance.Utilities.pdb
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Utilities\bin\Debug\Maintenance.Business.dll
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Utilities\bin\Debug\Maintenance.Business.pdb
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Utilities\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Utilities\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Utilities\bin\Debug\System.Web.Helpers.dll
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Utilities\bin\Debug\System.Web.Helpers.xml
