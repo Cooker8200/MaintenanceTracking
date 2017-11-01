@@ -109,7 +109,7 @@ namespace Maintenance.Utilities
             mail.Body = message;
             mail.From = new MailAddress("mcd_developer@outlook.com");
             mail.To.Add(new MailAddress("Cooker8200@hotmail.com"));
-            mail.CC.Add(new MailAddress(" "));
+            //mail.CC.Add(new MailAddress(" "));
             mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy");
             mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();

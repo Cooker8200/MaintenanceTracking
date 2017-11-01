@@ -24,6 +24,7 @@ namespace Maintenance.Web.Controllers
 
         public ActionResult Search(string searchtext)
         {
+            //todo change results view if no data displayed from database
             var HepAResults = _HepAmanager.HepASearch(searchtext);
             return PartialView("_HepAResults", HepAResults);
         }

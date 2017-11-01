@@ -38,6 +38,11 @@ namespace Maintenance.Web.Controllers
 
         public ActionResult OtpRequest()
         {
+            //List<SelectListItem> Store = new List<SelectListItem>()
+            //{
+            //    Store.Add(new SelectListItem { Text = "Ashby", Value = "0" });
+            //}
+
             Maintenance.Models.OtpRequest model = new Maintenance.Models.OtpRequest();
             IEnumerable<Maintenance.Models.Store> Store = Enum.GetValues(typeof(Maintenance.Models.Store)).Cast<Maintenance.Models.Store>();
             model.Store = from name in Store

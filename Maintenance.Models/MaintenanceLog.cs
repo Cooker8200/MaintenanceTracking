@@ -14,6 +14,7 @@ namespace Maintenance.Models
             [Display(Name = "Store")]
             public int StoreId { get; set; }
             [Display(Name = "Serivce Date")]
+            [DataType(DataType.Date)]
             public DateTime ServiceDate { get; set; }
             [Display(Name = "Vendor")]
             public string VendorName { get; set; }

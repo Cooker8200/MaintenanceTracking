@@ -22,6 +22,7 @@ namespace Maintenance.Web.Controllers
 
         public ActionResult Search (string searchtext)
         {
+            //todo change results view if no data displayed from database
             var results = _ServSafeManager.ServSafeManagerSearch(searchtext);
             return PartialView ("_ServSafeResults", results);
         }

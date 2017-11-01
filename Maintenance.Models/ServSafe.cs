@@ -15,7 +15,7 @@ namespace Maintenance.Models
         public string EmpName { get; set; }
 
         public string Proctor { get; set; }
-
+        [DataType(DataType.Date)]
         public DateTime Expiration { get; set; }
 
         public string Store { get; set; }

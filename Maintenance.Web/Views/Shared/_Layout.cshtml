@@ -23,7 +23,13 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Maintenance Home", "MaintenanceHome", "Maintenance")</li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">Maintenance</a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li>@Html.ActionLink("Maintenance Home", "MaintenanceHome", "Maintenance")</li>
+                                <li>@Html.ActionLink("Search Records", "MaintenanceSearch", "Maintenance")</li>
+                            </ul>
+                        </li>
                         <li>@Html.ActionLink("OTP Support Request", "OtpRequest", "OTP")</li>
                         <li>@Html.ActionLink("Hep A Records", "HepAHome", "HepA")</li>
                         <li>@Html.ActionLink("ServSafe", "ServSafeHome", "ServSafe")</li>

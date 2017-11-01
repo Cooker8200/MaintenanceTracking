@@ -137,7 +137,7 @@ namespace Maintenance.Web.Controllers
 
             else
             {
-                return null;  //todo redirect somewhere
+                return View("TryAgain");
             }
         }
 

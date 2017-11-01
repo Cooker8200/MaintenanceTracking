@@ -21,6 +21,7 @@ namespace Maintenance.Models
         }
 
         public int StoreId { get; set; }
+        //public List<SelectListItem> Store { get; set; }
         public IEnumerable<SelectListItem> Store { get; set; }
         [Required]
         public string Name { get; set; }
