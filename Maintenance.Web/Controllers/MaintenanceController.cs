@@ -35,6 +35,38 @@ namespace Maintenance.Web.Controllers
 
         public ActionResult Create()
         {
+            List<SelectListItem> Store = new List<SelectListItem>();
+            Store.Add(new SelectListItem { Text = "University City", Value = "" });
+            Store.Add(new SelectListItem { Text = "Ballwin", Value = "2147" });
+            Store.Add(new SelectListItem { Text = "Dorsett", Value = "" });
+            Store.Add(new SelectListItem { Text = "Ashby", Value = "2750" });
+            Store.Add(new SelectListItem { Text = "Lindell", Value = "" });
+            Store.Add(new SelectListItem { Text = "Olivette", Value = "" });
+            Store.Add(new SelectListItem { Text = "Clarkson", Value = "" });
+            Store.Add(new SelectListItem { Text = "141", Value = "" });
+            Store.Add(new SelectListItem { Text = "Overland Plaza", Value = "11003" });
+            Store.Add(new SelectListItem { Text = "Howdershell", Value = "" });
+            Store.Add(new SelectListItem { Text = "Earth City", Value = "" });
+            Store.Add(new SelectListItem { Text = "Creve Coeur", Value = " " });
+            Store.Add(new SelectListItem { Text = "St John's", Value = "32869" });
+            Store.Add(new SelectListItem { Text = "Ellisville", Value = "" });
+            Store.Add(new SelectListItem { Text = "Office", Value = "" });
+            ViewBag.Store = Store;
+
+            List<SelectListItem> RepairType = new List<SelectListItem>();
+            RepairType.Add(new SelectListItem { Text = "Refridgeration", Value = "Refridgeration" });
+            RepairType.Add(new SelectListItem { Text = "Technology", Value = "Technology" });
+            RepairType.Add(new SelectListItem { Text = "HVAC", Value = "HVAC" });
+            RepairType.Add(new SelectListItem { Text = "Physical", Value = "Physical" });
+            ViewBag.RepairType = RepairType;
+
+            List<SelectListItem> Vendor = new List<SelectListItem>();
+            Vendor.Add(new SelectListItem { Text = "OTM", Value = "OTM" });
+            Vendor.Add(new SelectListItem { Text = "Kitchen Solutions", Value = "Kitchen Solutions" });
+            Vendor.Add(new SelectListItem { Text = "Comfort Experts", Value = "Comfort Experts" });
+            Vendor.Add(new SelectListItem { Text = "Ostmann Construction", Value = "Ostmann Construction" });
+            ViewBag.Vendor = Vendor;
+
             return View();
         }
 
@@ -44,7 +76,10 @@ namespace Maintenance.Web.Controllers
         }
 
         public ActionResult CreateRecord(MaintenanceLog MaintenanceLog)
-        {
+        { 
+            
+            
+
             if (ModelState.IsValid)
             {
                 _maintenanceManager.CreateRecord(MaintenanceLog);

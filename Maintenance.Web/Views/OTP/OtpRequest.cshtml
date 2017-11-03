@@ -9,47 +9,51 @@
 @using (Html.BeginForm("SendOtp", "OTP", FormMethod.Post, new { }))
 {<div style="background-color: lightblue; padding-top:2%; padding-left: 2%; padding-right: 2%;">
         <div class="form-group">
-            <div>
+            @*<div>
                 @Html.LabelFor(m => m.Store)
             </div>
             <div>
                 @Html.DropDownListFor(m => m.StoreId, Model.Store)
-            </div>
+            </div>*@
+            @Html.Label("Store")
+            @Html.DropDownList("SendTo", "Choose Store")
         </div>
 
         <div class="form-group">
             <div>
                 @Html.LabelFor(m => m.Name)
-            </div>
-            <div>
                 @Html.TextBoxFor(m => m.Name)
                 @Html.ValidationMessageFor(m => m.Name)
             </div>
         </div>
-
         <div class="form-group">
+            @Html.Label("Equipment")
+            @Html.DropDownList("Equipment", "Choose Equipment")
+        </div>
+        @*<div class="form-group">
             <div>
                 @Html.LabelFor(m => m.Equipment)
             </div>
             <div>
                 @Html.DropDownListFor(m => m.EquipmentId, Model.Equipment)
             </div>
-        </div>
-
+        </div>*@
         <div class="form-group">
+            @Html.Label("Location")
+            @Html.DropDownList("Location", "Choose Location")
+        </div>
+        @*<div class="form-group">
             <div>
                 @Html.LabelFor(m => m.Location)
             </div>
             <div>
                 @Html.DropDownListFor(m => m.LocationId, Model.Location)
             </div>
-        </div>
+        </div>*@
 
         <div class="form-group">
             <div>
                 @Html.LabelFor(m => m.Problem)
-            </div>
-            <div>
                 @Html.TextAreaFor(m => m.Problem)
                 @Html.ValidationMessageFor(m => m.Problem)
             </div>

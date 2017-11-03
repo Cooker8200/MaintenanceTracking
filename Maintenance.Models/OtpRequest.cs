@@ -13,22 +13,25 @@ namespace Maintenance.Models
     {
         public OtpRequest()
         {
-            Store = new List<SelectListItem>();
+            //Store = new List<SelectListItem>();
 
-            Equipment = new List<SelectListItem>();
+            //Equipment = new List<SelectListItem>();
 
-            Location = new List<SelectListItem>();
+            //Location = new List<SelectListItem>();
         }
 
-        public int StoreId { get; set; }
-        //public List<SelectListItem> Store { get; set; }
-        public IEnumerable<SelectListItem> Store { get; set; }
+        //public int StoreId { get; set; }
+        [Required]
+        public List<SelectListItem> SendTo { get; set; }
+        //public IEnumerable<SelectListItem> Store { get; set; }
         [Required]
         public string Name { get; set; }
-        public int EquipmentId { get; set; }
-        public IEnumerable<SelectListItem> Equipment { get; set; }
-        public int LocationId { get; set; }
-        public IEnumerable<SelectListItem> Location { get; set; }
+        public List<SelectListItem> Equipment { get; set; }
+        public List<SelectListItem> Location { get; set; }
+        //public int EquipmentId { get; set; }
+        //public IEnumerable<SelectListItem> Equipment { get; set; }
+        //public int LocationId { get; set; }
+        //public IEnumerable<SelectListItem> Location { get; set; }
         [Required]
         public string Problem { get; set; }
     }
