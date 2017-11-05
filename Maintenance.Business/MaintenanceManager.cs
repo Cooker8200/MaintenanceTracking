@@ -23,9 +23,15 @@ namespace Maintenance.Business
             return MaintenanceList;
         }
 
-        public void CreateRecord(MaintenanceLog MaintenanceLog)
+        // !!! Old model method !!!
+        //public void CreateRecord(MaintenanceLog MaintenanceLog)
+        //{
+        //    _dataAccess.Create(MaintenanceLog);
+        //}
+
+        public void CreateRecord(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail)
         {
-            _dataAccess.Create(MaintenanceLog);
+            _dataAccess.Create(Store, ServiceDate, Vendor, Invoice, RepairType, RepairDetail);
         }
 
         public IEnumerable<MaintenanceLog> StoreSearch(string storetext) 

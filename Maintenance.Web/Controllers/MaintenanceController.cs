@@ -75,14 +75,30 @@ namespace Maintenance.Web.Controllers
             return View();
         }
 
-        public ActionResult CreateRecord(MaintenanceLog MaintenanceLog)
+        // !!! Old Method using model !!!
+        //public ActionResult CreateRecord(MaintenanceLog MaintenanceLog)
+        //{
+
+
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        _maintenanceManager.CreateRecord(MaintenanceLog);
+        //        return View("RecordAdded");
+        //    }
+        //    else
+        //    {
+        //        return View("TryAgain");
+        //    }
+
+        //}
+
+        public ActionResult CreateRecord(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail)
         { 
             
-            
-
             if (ModelState.IsValid)
             {
-                _maintenanceManager.CreateRecord(MaintenanceLog);
+                _maintenanceManager.CreateRecord(Store, ServiceDate, Vendor, Invoice, RepairType, RepairDetail);
                 return View("RecordAdded");
             }
             else

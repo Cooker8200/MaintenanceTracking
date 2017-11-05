@@ -20,9 +20,24 @@ namespace Maintenance.Data.DataAccess
             return MaintenanceList;
         }
 
-        public void Create(MaintenanceLog MaintenanceLog)
+        // !!! Old model method !!!
+        //public void Create(MaintenanceLog MaintenanceLog)
+        //{
+        //    db.MaintenanceLog.Add(MaintenanceLog);
+        //    db.SaveChanges();
+        //}
+
+        public void Create(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail)
         {
-            db.MaintenanceLog.Add(MaintenanceLog);
+            var createRecord = new MaintenanceLog();
+            createRecord.Invoice = Invoice;
+            createRecord.RepairDetail = RepairDetail;
+            createRecord.RepairType = RepairType;
+            createRecord.ServiceDate = ServiceDate;
+            createRecord.StoreName = Store;
+            createRecord.VendorName = Vendor;
+            createRecord.StoreId = 2750;        //create method to generate correct store id
+            db.MaintenanceLog.Add(createRecord);
             db.SaveChanges();
         }
 
