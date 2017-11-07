@@ -61,6 +61,14 @@
         })
     })
 
+    $("#create_record_button").click(function () {
+        var storeName = $("storenames").find
+    })
+
+    //$("#storenames").change(function () {
+    //    var storename = $("#storenames").find(":selected").text();
+    //})
+
 });
 
 

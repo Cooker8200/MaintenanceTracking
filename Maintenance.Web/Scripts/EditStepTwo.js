@@ -27,4 +27,17 @@
             }
         })
     });
+
+    //$("#create_record_button").click(function () {
+    //    var storeName = $("#storenames").find(":selected").text()
+    //    $.ajax({
+    //        data: {"#StoreName"},
+    //        url: 'Maintenance/CreateRecord',
+    //        success: function(){
+    //            $.ajax({
+    //                url: 'Maintenance/RecordAdded'
+    //            })
+    //        } 
+    //    })
+    //})
 })

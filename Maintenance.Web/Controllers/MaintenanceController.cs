@@ -52,6 +52,7 @@ namespace Maintenance.Web.Controllers
             Store.Add(new SelectListItem { Text = "Ellisville", Value = "" });
             Store.Add(new SelectListItem { Text = "Office", Value = "" });
             ViewBag.Store = Store;
+            Session["StoreNames"] = Store;
 
             List<SelectListItem> RepairType = new List<SelectListItem>();
             RepairType.Add(new SelectListItem { Text = "Refridgeration", Value = "Refridgeration" });
@@ -93,12 +94,16 @@ namespace Maintenance.Web.Controllers
 
         //}
 
+
         public ActionResult CreateRecord(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail)
-        { 
-            
+        {
+            var stores = (List<SelectListItem>)Session["StoreNames"];
+            var store = stores.FirstOrDefault(x => x.Value == Store);
+            var storeName = store.Text;
+
             if (ModelState.IsValid)
             {
-                _maintenanceManager.CreateRecord(Store, ServiceDate, Vendor, Invoice, RepairType, RepairDetail);
+                _maintenanceManager.CreateRecord(Store, ServiceDate, Vendor, Invoice, RepairType, RepairDetail, storeName);
                 return View("RecordAdded");
             }
             else

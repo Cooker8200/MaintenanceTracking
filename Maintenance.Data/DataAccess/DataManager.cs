@@ -27,16 +27,18 @@ namespace Maintenance.Data.DataAccess
         //    db.SaveChanges();
         //}
 
-        public void Create(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail)
+        public void Create(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail, string storeName)
         {
+            var storeNumber = Convert.ToInt32(Store);  
+
             var createRecord = new MaintenanceLog();
             createRecord.Invoice = Invoice;
             createRecord.RepairDetail = RepairDetail;
             createRecord.RepairType = RepairType;
             createRecord.ServiceDate = ServiceDate;
-            createRecord.StoreName = Store;
+            createRecord.StoreName = storeName;
             createRecord.VendorName = Vendor;
-            createRecord.StoreId = 2750;        //create method to generate correct store id
+            createRecord.StoreId = storeNumber;        
             db.MaintenanceLog.Add(createRecord);
             db.SaveChanges();
         }

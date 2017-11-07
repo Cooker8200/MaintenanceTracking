@@ -29,9 +29,9 @@ namespace Maintenance.Business
         //    _dataAccess.Create(MaintenanceLog);
         //}
 
-        public void CreateRecord(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail)
+        public void CreateRecord(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail, string storeName)
         {
-            _dataAccess.Create(Store, ServiceDate, Vendor, Invoice, RepairType, RepairDetail);
+            _dataAccess.Create(Store, ServiceDate, Vendor, Invoice, RepairType, RepairDetail, storeName);
         }
 
         public IEnumerable<MaintenanceLog> StoreSearch(string storetext) 

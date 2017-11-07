@@ -23,14 +23,14 @@ namespace Maintenance.Utilities
 
             //create file and write records results to file, then read file to compile message
             var message = "";
-            var date = DateTime.Now.ToString("dd-MM-yyyy");
+            var date = DateTime.Now.ToString("dd-MMM-yyyy");
             var fileName = date + " Weekly HepA.txt";
             var path = Path.Combine("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\WeeklyHepA_Report", fileName);
             FileStream file = File.Create(path);
 
             using (StreamWriter write = new StreamWriter(file))
             {
-                write.WriteLine(DateTime.Now.ToString("dd-MM-yyyy"));
+                write.WriteLine(DateTime.Now.ToString("dd-MMM-yyyy"));
                 foreach (HepA item in records)
                 {
                     if (item.FirstShot > DateTime.Now)
@@ -41,7 +41,7 @@ namespace Maintenance.Utilities
                     var currentMonthInt = Convert.ToInt32(currentMonth);
                     var firstDate = item.FirstShot.ToString();
                     var firstShotMonth = DateTime.Parse(firstDate).ToString("MM");
-                    var writeFirstShot = DateTime.Parse(firstDate).ToString("dd-MM-yyyy");
+                    var writeFirstShot = DateTime.Parse(firstDate).ToString("dd-MMM-yyyy");
                     int month = Convert.ToInt32(firstShotMonth);
                     if (month <= 6)
                     {
@@ -54,7 +54,7 @@ namespace Maintenance.Utilities
                         if (time >= 2 && time <= 6)
                         {
                             var empGood = item.EmpName + " has " + time + " months left to get second HepA shot";
-                            write.WriteLine(empGood + " -- First Shot: " + writeFirstShot);
+                            write.WriteLine(empGood + " -- First Shot: " + writeFirstShot);  
                         }
                         if (time <= 1 && time > 0)
                         {
@@ -103,20 +103,22 @@ namespace Maintenance.Utilities
             {
                 message = read.ReadToEnd();
             }
-                                                                                        //todo change to app config
+
             //send mail message with results of weekly search
+            var port = Convert.ToInt32(ConfigurationSettings.AppSettings["Email.Port"]);
             var mail = new MailMessage();
             mail.Body = message;
-            mail.From = new MailAddress("mcd_developer@outlook.com");
-            mail.To.Add(new MailAddress("Cooker8200@hotmail.com"));
+            mail.From = new MailAddress(ConfigurationSettings.AppSettings["Email.From"]);
+            mail.To.Add(new MailAddress(ConfigurationSettings.AppSettings["Email.SendTo"]));
+            //option cc email address
             //mail.CC.Add(new MailAddress(" "));
             mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy");
             mail.IsBodyHtml = true;
             SmtpClient smtp = new SmtpClient();
-            smtp.Host = "smtp-mail.outlook.com";
-            smtp.Port = 587;
+            smtp.Host = ConfigurationSettings.AppSettings["Email.Host"];
+            smtp.Port = port;
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("mcd_developer@outlook.com", "mcdDeveloper1234");
+            smtp.Credentials = new NetworkCredential(ConfigurationSettings.AppSettings["Email.User"], ConfigurationSettings.AppSettings["Email.Password"]);
             smtp.EnableSsl = true;
             smtp.Send(mail);
 
