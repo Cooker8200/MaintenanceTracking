@@ -1,5 +1,6 @@
 ﻿using Maintenance.Business;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -40,6 +41,7 @@ namespace Maintenance.Web.Controllers
         public ActionResult OtpRequest()
         {
             List<SelectListItem> SendTo = new List<SelectListItem>();
+            SendTo.Add(new SelectListItem { Text = "Test", Value = "Cooker8200@hotmail.com" });
             SendTo.Add(new SelectListItem { Text = "University City", Value = "@us.stores.mcd.com" });
             SendTo.Add(new SelectListItem { Text = "Ballwin", Value = "@us.stores.mcd.com" });
             SendTo.Add(new SelectListItem { Text = "Dorsett", Value = "@us.stores.mcd.com" });
@@ -56,12 +58,13 @@ namespace Maintenance.Web.Controllers
             SendTo.Add(new SelectListItem { Text = "Ellisville", Value = "@us.stores.mcd.com" });
             SendTo.Add(new SelectListItem { Text = "Office", Value = "@us.stores.mcd.com" });
             ViewBag.SendTo = SendTo;
+            Session["StoreName"] = SendTo;
 
             List<SelectListItem> Equipment = new List<SelectListItem>();
             Equipment.Add(new SelectListItem { Text = "POS", Value = "POS" });
             Equipment.Add(new SelectListItem { Text = "Register", Value = "Register" });
             Equipment.Add(new SelectListItem { Text = "KVS Controller", Value = "KVS Controller" });
-            Equipment.Add(new SelectListItem { Text = "POS Server", Value = "POS Server3" });
+            Equipment.Add(new SelectListItem { Text = "POS Server", Value = "POS Server" });
             Equipment.Add(new SelectListItem { Text = "ISP Server", Value = "ISP Server" });
             Equipment.Add(new SelectListItem { Text = "Printer", Value = "Printer" });
             Equipment.Add(new SelectListItem { Text = "Bumpbar", Value = "Bumpbar" });
@@ -119,7 +122,11 @@ namespace Maintenance.Web.Controllers
 
         public ActionResult SendOtp (string SendTo, string Name, string Equipment, string Location, string Problem)
         {
-            _contact.SendOtp(SendTo, Name, Equipment, Location, Problem);
+            var stores = (List<SelectListItem>)Session["StoreName"];
+            var store = stores.FirstOrDefault(x => x.Value == SendTo);
+            var storeName = store.Text;
+
+            _contact.SendOtp(SendTo, Name, Equipment, Location, Problem, storeName);
 
             return View("Sent");
         }

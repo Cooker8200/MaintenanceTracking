@@ -50,7 +50,7 @@ namespace Maintenance.Web.Controllers
             Store.Add(new SelectListItem { Text = "Creve Coeur", Value = " " });
             Store.Add(new SelectListItem { Text = "St John's", Value = "32869" });
             Store.Add(new SelectListItem { Text = "Ellisville", Value = "" });
-            Store.Add(new SelectListItem { Text = "Office", Value = "" });
+            Store.Add(new SelectListItem { Text = "Office", Value = "9999" });
             ViewBag.Store = Store;
             Session["StoreNames"] = Store;
 
