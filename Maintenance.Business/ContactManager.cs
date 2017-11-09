@@ -19,7 +19,9 @@ namespace Maintenance.Business
         {
             //create email template
             string email;
-            var emailFilePath = ("C:/Users/Jennifer/Desktop/MaintenanceTracking/Maintenance.Business/Email_Template/Contact_Template.html");
+            var emailFilePath = HttpContext.Current.Server.MapPath("~/Templates/Contact_Template.html");       //todo fix file mapping issue
+            //var emailFilePath = ("~/Email_Template/Contact_Template.html");
+            //var emailFilePath = ("C:/Users/Jennifer/Desktop/MaintenanceTracking/Maintenance.Business/Email_Template/Contact_Template.html");
             using (var streamReader = new StreamReader(emailFilePath))
             {
                 email = streamReader.ReadToEnd();

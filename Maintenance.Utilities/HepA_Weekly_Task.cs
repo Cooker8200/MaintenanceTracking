@@ -64,7 +64,7 @@ namespace Maintenance.Utilities
                         if (time <= 0)
                         {
                             var offSch = item.EmpName + " MUST NOT WORK UNTIL SECOND HEP A SHOT!!";
-                            write.WriteLine(offSch);
+                            write.WriteLine(offSch + " -- First Shot: " + writeFirstShot);
                         }
 
                     }
@@ -93,7 +93,7 @@ namespace Maintenance.Utilities
                         if (lateTime <= 0)
                         {
                             var offSch = item.EmpName + " MUST NOT WORK UNTIL SECOND HEP A SHOT!!";
-                            write.WriteLine(offSch);
+                            write.WriteLine(offSch + " -- First Shot: " + writeFirstShot);
                         }
                     }
                 }
