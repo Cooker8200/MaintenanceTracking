@@ -1,14 +1,25 @@
 ﻿<h3 class="main_header">Banducci Enterprises</h3>
 <hr />
 
-<h5>Choose from below:</h5>
-<button class="btn btn-group" style="text-align: center;">
-    <p class="btn btn-default" id="search_store">Search By Store</p>
-    <p class="btn btn-default" id="search_date">Search by Date</p>
-    <p class="btn btn-default" id="search_vendor">Search by Vendor</p>
-    <p class="btn btn-default" id="search_type">Search by Repair Type</p>
-</button>
+@if (User.Identity.IsAuthenticated)
+{
+    <h5 style="text-align: center; font-weight: bold;">Choose from below:</h5>
+    <button class="btn btn-group" style="text-align: center;">
+        <p class="btn btn-default" id="search_store">Search By Store</p>
+        <p class="btn btn-default" id="search_date">Search by Date</p>
+        <p class="btn btn-default" id="search_vendor">Search by Vendor</p>
+        <p class="btn btn-default" id="search_type">Search by Repair Type</p>
+    </button>
 
-<div id="search_field">
+    <div id="search_field">
 
-</div>
+    </div>
+
+    <div id="search_results">
+
+    </div>
+}
+else
+{
+    <h4>@Html.ActionLink("Please log in", "Login", "Account")</h4>
+}

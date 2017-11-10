@@ -24,7 +24,7 @@
             //        $(this).css("background-color", "#ffffff")
         });
 
-    //search store
+    //bring in search store
     $("#search_store").click(function () {
         $.ajax({
             url: "/Maintenance/SearchStore",
@@ -33,7 +33,7 @@
             }
         })
     })
-    //search date
+    //bring in search date
     $("#search_date").click(function () {
         $.ajax({
             url: "/Maintenance/SearchDates",
@@ -42,7 +42,7 @@
             }
         })
     })
-    //search vendor
+    //bring in search vendor
     $("#search_vendor").click(function () {
         $.ajax({
             url: "/Maintenance/SearchVendor",
@@ -51,7 +51,7 @@
             }
         })
     })
-    //search repair type
+    //bring in search repair type
     $("#search_type").click(function () {
         $.ajax({
             url: "/Maintenance/SearchRepairType",
@@ -60,9 +60,57 @@
             }
         })
     })
+    //search calls
+    //store
+    $("#store_search").click(function (storetext) {
+        var storetext = $("#storetext").val();
+        $.ajax({
+            url: "/Maintenance/StoreRecords",
+            data: storetext,
+            success: function (result) {
+                $("#search_results").html(result);
+            }
+        });
+    })
+    //repair type
+    $("#repair_search").click(function (repairtext) {
+        var repairtext = $("#repairtext").val();
+        $.ajax({
+            url: "/Maintenance/RepairTypeRecords",
+            data: repairtext,
+            success: function (result) {
+                $("#search_results").html(result);
+            }
+        });
+    })
+    //vendor
+    $("#vendor_search").click(function (vendortext) {
+        var vendortext = $("#vendortext").val();
+        $.ajax({
+            url: "/Maintenance/VendorRecords",
+            data: vendortext,
+            success: function (result) {
+                $("#search_results").html(result);
+            }
+        });
+    })
+    //date
+    $("#date_search").click(function (dateone, datetwo) {
+        var dateone = $("#startedate").val();
+        var datetwo = $("#enddate").val();
+        $.ajax({
+            url: "/Maintenance/DateRecords",
+            data: dateone, datetwo,
+            success: function (result) {
+                $("#search_results").html(result);
+            }
+        });
+    })
 
-    $("#create_record_button").click(function () {
-        var storeName = $("storenames").find
+    //create store -- get store name
+    $("#Store").change(function () {
+        var storeName = $("#Store").find(":selected").text();
+        $("#StoreName").val(storeName);
     })
 
 });

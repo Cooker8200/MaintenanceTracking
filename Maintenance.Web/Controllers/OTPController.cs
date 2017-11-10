@@ -19,25 +19,6 @@ namespace Maintenance.Web.Controllers
 
         private ContactManager _contact;
 
-        // !!! Descrition tag helper --- No longer needed !!!
-        //public static string GetDescription(Enum en)  //todo
-        //{
-        //    Type type = en.GetType();
-        //    MemberInfo[] memInfo = type.GetMember(en.ToString());
-
-        //    if (memInfo != null && memInfo.Length > 0)
-        //    {
-        //        object[] attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
-
-        //        if (attrs != null && attrs.Length > 0)
-        //        {
-        //            return ((DescriptionAttribute)attrs[0]).Description;
-        //        }
-        //    }
-
-        //    return en.ToString();
-        //}
-
         public ActionResult OtpRequest()
         {
             List<SelectListItem> SendTo = new List<SelectListItem>();
@@ -58,7 +39,7 @@ namespace Maintenance.Web.Controllers
             SendTo.Add(new SelectListItem { Text = "Ellisville", Value = "@us.stores.mcd.com" });
             SendTo.Add(new SelectListItem { Text = "Office", Value = "@us.stores.mcd.com" });
             ViewBag.SendTo = SendTo;
-            Session["StoreName"] = SendTo;
+            //Session["StoreName"] = SendTo;
 
             List<SelectListItem> Equipment = new List<SelectListItem>();
             Equipment.Add(new SelectListItem { Text = "POS", Value = "POS" });
@@ -111,6 +92,25 @@ namespace Maintenance.Web.Controllers
 
             //                 };
 
+            // !!! Descrition tag helper --- No longer needed !!!
+            //public static string GetDescription(Enum en)  //todo
+            //{
+            //    Type type = en.GetType();
+            //    MemberInfo[] memInfo = type.GetMember(en.ToString());
+
+            //    if (memInfo != null && memInfo.Length > 0)
+            //    {
+            //        object[] attrs = memInfo[0].GetCustomAttributes(typeof(DescriptionAttribute), false);
+
+            //        if (attrs != null && attrs.Length > 0)
+            //        {
+            //            return ((DescriptionAttribute)attrs[0]).Description;
+            //        }
+            //    }
+
+            //    return en.ToString();
+            //}
+
             return View();
         }
 
@@ -120,19 +120,20 @@ namespace Maintenance.Web.Controllers
         }
 
 
-        public ActionResult SendOtp (string SendTo, string Name, string Equipment, string Location, string Problem)
+        public ActionResult SendOtp (string SendTo, string Name, string Equipment, string Location, string Problem, string StoreName)
         {
-            var stores = (List<SelectListItem>)Session["StoreName"];
-            var store = stores.FirstOrDefault(x => x.Value == SendTo);
-            var storeName = store.Text;
+            //var stores = (List<SelectListItem>)Session["StoreName"];
+            //var store = stores.FirstOrDefault(x => x.Value == SendTo);
+            //var storeName = store.Text;
 
-            _contact.SendOtp(SendTo, Name, Equipment, Location, Problem, storeName);
+            _contact.SendOtp(SendTo, Name, Equipment, Location, Problem, StoreName);
 
             return View("Sent");
         }
+
         //public ActionResult SendOtp(Maintenance.Models.OtpRequest model, string SendTo)
         //{
-            
+
         //    if (ModelState.IsValid)
         //    {
         //        _contact.SendOtp(model);
@@ -143,5 +144,6 @@ namespace Maintenance.Web.Controllers
         //    }
         //    return View("Sent");
         //}
+
     }
 }

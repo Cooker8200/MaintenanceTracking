@@ -3651,11 +3651,17 @@ tbody.collapse.in {
   position: relative;
   display: inline-block;
   vertical-align: middle;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
 .btn-group > .btn,
 .btn-group-vertical > .btn {
   position: relative;
   float: left;
+  margin-left: auto;
+  margin-right: auto;
+  width: 25%;
 }
 .btn-group > .btn:hover,
 .btn-group-vertical > .btn:hover,
@@ -6930,7 +6936,10 @@ label,
 .checkbox,
 .radio {
   font-size: 12px;
-  font-weight: normal;
+  font-weight: bold;
+  width: 10em;
+  text-align: right;
+  padding-right: 2%;
 }
 input[type="radio"],
 input[type="checkbox"] {

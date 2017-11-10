@@ -31,6 +31,7 @@ namespace Maintenance.Business
             email = email.Replace("$$Equipment$$", Equipment);
             email = email.Replace("$$Location$$", Location);
             email = email.Replace("$$Problem$$", Problem);
+            email = email.Replace("$$Name$$", Name);
             //generate email
             try
             {
@@ -78,7 +79,7 @@ namespace Maintenance.Business
 
         }
 
-        // !!! Old Contact Form !!!
+         //!!! Old Contact Form !!!
         //public void SendOtp(Maintenance.Models.OtpRequest model)
         //{
         //    var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";

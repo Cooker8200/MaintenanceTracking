@@ -2,20 +2,26 @@
 
 <h3 class="main_header">Banducci Enterprises</h3>
 <hr />
+@if (User.Identity.IsAuthenticated)
+{
+    <h5>Search Store and Repair Type</h5>
+    <div id="search_method">
+        <!-- insert javascript for selection, ajax call to proceed to next step -->
+    </div>
 
-<h5>How do you want to search?</h5>
-<div id="search_method">
-    <!-- insert javascript for selection, ajax call to proceed to next step -->
-</div>
+    <div id="edit_step2">
+        <!-- second step where we choose repair type passed in through ajax call -->
 
-<div id="edit_step2">
-    <!-- second step where we choose repair type passed in through ajax call -->
+    </div>
 
-</div>
+    <div id="search_results">
 
-<div id="search_results">
+    </div>
 
-</div>
-
-@Scripts.Render("~/bundles/jquery")
-@Scripts.Render("~/Scripts/MaintenanceEdit.js")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/Scripts/MaintenanceEdit.js")
+}
+else
+{
+    <h4>@Html.ActionLink("Please log in", "Login", "Account")</h4>
+}

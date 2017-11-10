@@ -11,10 +11,6 @@
 
             <h4 style="margin-left: 10%; font-weight:400 ;">Maintenance Home</h4>
 
-            @*@Html.ActionLink("Go To Maintenance App", "MaintenanceHome", "Maintenance")
-
-                <button id="goto_maint">Go To Maintenance App</button>*@
-
             <a href="@Url.Action("MaintenanceHome", "Maintenance")" id="otp_button">Go To Maintenance App</a>
 
         </div>
@@ -22,8 +18,6 @@
         <div class="col-md-6" id="login_box">
 
             <h4 style="margin-left: 10%; font-weight: 400;">Send Technology Help Request</h4>
-
-            @*@Html.ActionLink("Create a New Help Request", "OtpRequest", "OTP")*@
 
             <a href="@Url.Action("OtpRequest", "OTP")" id="otp_button">Start an OTP Help Request</a>
 
@@ -33,8 +27,6 @@
 
             <h4 style="margin-left: 10%; font-weight: 400;">Hep A Records</h4>
 
-            @*@Html.ActionLink("Create a New Help Request", "OtpRequest", "OTP")*@
-
             <a href="@Url.Action("HepAHome", "HepA")" id="otp_button">Hep A Records</a>
 
         </div>
@@ -42,8 +34,6 @@
         <div class="col-md-6" id="login_box">
 
             <h4 style="margin-left: 10%; font-weight: 400;">ServSafe Records</h4>
-
-            @*@Html.ActionLink("Create a New Help Request", "OtpRequest", "OTP")*@
 
             <a href="@Url.Action("ServSafeHome", "ServSafe")" id="otp_button">ServSafe Records</a>
 
@@ -88,14 +78,9 @@ else
                         <input type="submit" value="Log in" class="btn btn-default" />
                     </div>
                 </div>
-                @*<p>
-                        @Html.ActionLink("Register as a new user", "Register")
-                    </p>*@
-                @* Enable this once you have account confirmation enabled for password reset functionality
-                    <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+
         }
+
     </div>
 
     <div class="col-md-6" id="login_box">
@@ -103,8 +88,6 @@ else
         <h4 style="margin-left: 10%; font-weight: 400;">Send Technology Help Request</h4>
 
         <a href="@Url.Action("OtpRequest", "OTP")" id="otp_button">Start an OTP Help Request</a>
-
-        @*<a href=@Html.ActionLink("Click Here to Start a New Request", "OtpRequest", "OTP") class="otp_button"></a>*@
 
     </div>
 

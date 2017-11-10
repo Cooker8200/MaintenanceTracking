@@ -12,20 +12,16 @@
 @using (Html.BeginForm("SendOtp", "OTP", FormMethod.Post, new { }))
 {
     <div style="background-color: lightblue; padding-top:2%; padding-left: 2%; padding-right: 2%;">
-        
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            @*<div>
-                @Html.LabelFor(m => m.Store)
-            </div>
-            <div>
-                @Html.DropDownListFor(m => m.StoreId, Model.Store)
-            </div>*@
             @Html.Label("Store")
             @Html.DropDownList("SendTo", "Choose Store")
         </div>
 
         <div style="display:none">
-            <input type="text" value="StoreName" id="StoreName" />
+            <input type="text" name="StoreName" id="StoreName" />
         </div>
 
         <div class="form-group">
@@ -41,28 +37,10 @@
             @Html.DropDownList("Equipment", "Choose Equipment")
         </div>
 
-        @*<div class="form-group">
-            <div>
-                @Html.LabelFor(m => m.Equipment)
-            </div>
-            <div>
-                @Html.DropDownListFor(m => m.EquipmentId, Model.Equipment)
-            </div>
-        </div>*@
-
         <div class="form-group">
             @Html.Label("Location")
             @Html.DropDownList("Location", "Choose Location")
         </div>
-
-        @*<div class="form-group">
-            <div>
-                @Html.LabelFor(m => m.Location)
-            </div>
-            <div>
-                @Html.DropDownListFor(m => m.LocationId, Model.Location)
-            </div>
-        </div>*@
 
         <div class="form-group">
             <div>

@@ -26,6 +26,7 @@
 
     s.appendTo("#list");
 
+    //search records function
     $("#ss_search").click(function (searchtext) {
         var searchtext = $(s).find(":selected").text();
         $.ajax({

@@ -1,6 +1,9 @@
-﻿@using (Html.BeginForm("RepairTypeRecords", "Maintenance", FormMethod.Post))
-{
+﻿
+<div style="text-align: center">
     <input type="text" id="repairtext" name="repairtext" />
 
-    <button class="btn btn-primary">Search</button>
-}
+    <button class="btn btn-primary" id="repair_search">Search</button>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/Scripts/MaintenanceEdit.js")

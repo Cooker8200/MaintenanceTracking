@@ -35,6 +35,7 @@ namespace Maintenance.Web.Controllers
 
         public ActionResult Create()
         {
+            //ToolsController.Lists();      //todo use/delete
             List<SelectListItem> Store = new List<SelectListItem>();
             Store.Add(new SelectListItem { Text = "University City", Value = "" });
             Store.Add(new SelectListItem { Text = "Ballwin", Value = "2147" });
@@ -52,13 +53,15 @@ namespace Maintenance.Web.Controllers
             Store.Add(new SelectListItem { Text = "Ellisville", Value = "" });
             Store.Add(new SelectListItem { Text = "Office", Value = "9999" });
             ViewBag.Store = Store;
-            Session["StoreNames"] = Store;
+            //Session["StoreNames"] = Store;
 
             List<SelectListItem> RepairType = new List<SelectListItem>();
             RepairType.Add(new SelectListItem { Text = "Refridgeration", Value = "Refridgeration" });
             RepairType.Add(new SelectListItem { Text = "Technology", Value = "Technology" });
             RepairType.Add(new SelectListItem { Text = "HVAC", Value = "HVAC" });
             RepairType.Add(new SelectListItem { Text = "Physical", Value = "Physical" });
+            RepairType.Add(new SelectListItem { Text = "Grills", Value = "Grills" });
+            RepairType.Add(new SelectListItem { Text = "Fryers", Value = "Fryers" });
             ViewBag.RepairType = RepairType;
 
             List<SelectListItem> Vendor = new List<SelectListItem>();
@@ -95,15 +98,15 @@ namespace Maintenance.Web.Controllers
         //}
 
 
-        public ActionResult CreateRecord(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail)
+        public ActionResult CreateRecord(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail, string StoreName)
         {
-            var stores = (List<SelectListItem>)Session["StoreNames"];
-            var store = stores.FirstOrDefault(x => x.Value == Store);
-            var storeName = store.Text;
+            //var stores = (List<SelectListItem>)Session["StoreNames"];
+            //var store = stores.FirstOrDefault(x => x.Value == Store);
+            //var storeName = store.Text;
 
             if (ModelState.IsValid)
             {
-                _maintenanceManager.CreateRecord(Store, ServiceDate, Vendor, Invoice, RepairType, RepairDetail, storeName);
+                _maintenanceManager.CreateRecord(Store, ServiceDate, Vendor, Invoice, RepairType, RepairDetail, StoreName);
                 return View("RecordAdded");
             }
             else
@@ -138,26 +141,61 @@ namespace Maintenance.Web.Controllers
         public ActionResult StoreRecords(string storetext)  
         {
             var StoreSearchRecords = _maintenanceManager.StoreSearch(storetext);
-            return View("StoreSearchResults", StoreSearchRecords);
+            var recordCount = Convert.ToInt32(StoreSearchRecords.Count());
+            if (recordCount == 0)
+            {
+                return PartialView("_NoRecordsFound", storetext);
+            }
+            else
+            {
+                return View("StoreSearchResults", StoreSearchRecords);
+            }
+            
         }
 
         public ActionResult DateRecords(string startdate, string enddate)
         {
 
             var DateSearchRecords = _maintenanceManager.DateSearch(startdate, enddate);
-            return View("StoreSearchResults", DateSearchRecords);
-
+            var recordCount = Convert.ToInt32(DateSearchRecords.Count());
+            if (recordCount == 0)
+            {
+                return PartialView("_NoRecordsFound");
+            }
+            else
+            {
+                return View("StoreSearchResults", DateSearchRecords);
+            }
+            
         }
         public ActionResult VendorRecords(string vendortext)
         {
             var VendorSearchRecords = _maintenanceManager.VendorSearch(vendortext);
-            return View("StoreSearchResults", VendorSearchRecords);
+            var recordCount = Convert.ToInt32(VendorSearchRecords.Count());
+            if (recordCount == 0)
+            {
+                return PartialView("_NoRecordsFound", vendortext);
+            }
+            else
+            {
+                return View("StoreSearchResults", VendorSearchRecords);
+            }
+
         }
 
         public ActionResult RepairTypeRecords(string repairtext)
         {
-            var RepairTypeRecords = _maintenanceManager.VendorSearch(repairtext);
-            return View("StoreSearchResults", RepairTypeRecords);
+            var RepairTypeRecords = _maintenanceManager.RepairTypeSearch(repairtext);
+            var recordCount = Convert.ToInt32(RepairTypeRecords.Count());
+            if (recordCount == 0)
+            {
+                return PartialView("_NoRecordsFound", repairtext);
+            }
+            else
+            {
+                return View("StoreSearchResults", RepairTypeRecords);
+            }
+
         }
 
         public ActionResult Edit()
@@ -179,6 +217,41 @@ namespace Maintenance.Web.Controllers
 
         public ActionResult EditRecord (int? id)
         {
+            List<SelectListItem> Store = new List<SelectListItem>();
+            Store.Add(new SelectListItem { Text = "University City", Value = "" });
+            Store.Add(new SelectListItem { Text = "Ballwin", Value = "2147" });
+            Store.Add(new SelectListItem { Text = "Dorsett", Value = "" });
+            Store.Add(new SelectListItem { Text = "Ashby", Value = "2750" });
+            Store.Add(new SelectListItem { Text = "Lindell", Value = "" });
+            Store.Add(new SelectListItem { Text = "Olivette", Value = "" });
+            Store.Add(new SelectListItem { Text = "Clarkson", Value = "" });
+            Store.Add(new SelectListItem { Text = "141", Value = "" });
+            Store.Add(new SelectListItem { Text = "Overland Plaza", Value = "11003" });
+            Store.Add(new SelectListItem { Text = "Howdershell", Value = "" });
+            Store.Add(new SelectListItem { Text = "Earth City", Value = "" });
+            Store.Add(new SelectListItem { Text = "Creve Coeur", Value = " " });
+            Store.Add(new SelectListItem { Text = "St John's", Value = "32869" });
+            Store.Add(new SelectListItem { Text = "Ellisville", Value = "" });
+            Store.Add(new SelectListItem { Text = "Office", Value = "9999" });
+            ViewBag.Store = Store;
+            Session["StoreNames"] = Store;
+
+            List<SelectListItem> RepairType = new List<SelectListItem>();
+            RepairType.Add(new SelectListItem { Text = "Refridgeration", Value = "Refridgeration" });
+            RepairType.Add(new SelectListItem { Text = "Technology", Value = "Technology" });
+            RepairType.Add(new SelectListItem { Text = "HVAC", Value = "HVAC" });
+            RepairType.Add(new SelectListItem { Text = "Physical", Value = "Physical" });
+            RepairType.Add(new SelectListItem { Text = "Grills", Value = "Grills" });
+            RepairType.Add(new SelectListItem { Text = "Fryers", Value = "Fryers" });
+            ViewBag.RepairType = RepairType;
+
+            List<SelectListItem> Vendor = new List<SelectListItem>();
+            Vendor.Add(new SelectListItem { Text = "OTM", Value = "OTM" });
+            Vendor.Add(new SelectListItem { Text = "Kitchen Solutions", Value = "Kitchen Solutions" });
+            Vendor.Add(new SelectListItem { Text = "Comfort Experts", Value = "Comfort Experts" });
+            Vendor.Add(new SelectListItem { Text = "Ostmann Construction", Value = "Ostmann Construction" });
+            ViewBag.Vendor = Vendor;
+
             var MaintRecord = _maintenanceManager.ManagerFindId(id);
             return View(MaintRecord);
         }
