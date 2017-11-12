@@ -11,6 +11,11 @@ namespace Maintenance.Web
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/MaintenanceScript.js"));
+            //todo bundle?
+            bundles.Add(new ScriptBundle("~/bundles/Edit").Include(
+                        "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/MaintenanceEdit.js",
+                        "~/Scripts/EditStepTwo.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));

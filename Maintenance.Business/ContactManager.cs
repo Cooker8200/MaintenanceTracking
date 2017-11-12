@@ -19,7 +19,7 @@ namespace Maintenance.Business
         {
             //create email template
             string email;
-            var emailFilePath = HttpContext.Current.Server.MapPath("~/Templates/Contact_Template.html");       //todo fix file mapping issue
+            var emailFilePath = HttpContext.Current.Server.MapPath("~/Templates/Contact_Template.html");
             //var emailFilePath = ("~/Email_Template/Contact_Template.html");
             //var emailFilePath = ("C:/Users/Jennifer/Desktop/MaintenanceTracking/Maintenance.Business/Email_Template/Contact_Template.html");
             using (var streamReader = new StreamReader(emailFilePath))
@@ -36,15 +36,13 @@ namespace Maintenance.Business
             try
             {
                 //todo fix webconfig errors
-                var port = Convert.ToInt32(ConfigurationSettings.AppSettings["Email.Port"]);
+                var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                 var body = email;
                 //var body = "<p>Support Request From: {0}, {1}</p><p>Problem: {4}</p><p>{2} at {3}</p>";
                 var message = new MailMessage();
-                message.To.Add(new MailAddress("Cooker8200@hotmail.com"));
-                //message.To.Add(new MailAddress(ConfigurationSettings.AppSettings["Email.SendTo"]));      //change to SendTo upon deployment
-                //message.CC.Add(new MailAddress(ConfigurationSettings.AppSettings[" "]));               //could change to office email in live
-                message.From = new MailAddress("mcd_developer@outlook.com");
-                //message.From = new MailAddress(ConfigurationSettings.AppSettings["Email.User"]);
+                message.To.Add(new MailAddress(ConfigurationManager.AppSettings["Email.SendTo"]));      //change to SendTo upon deployment
+                //message.CC.Add(new MailAddress(ConfigurationManager.AppSettings[" "]));               //could change to office email in live
+                message.From = new MailAddress(ConfigurationManager.AppSettings["Email.User"]);
                 message.Subject = string.Format("OTP Request");
                 message.Body = body;
                 //message.Body = string.Format(body, SendTo, Name, Equipment, Location, Problem);
@@ -54,16 +52,12 @@ namespace Maintenance.Business
                 {
                     var credential = new NetworkCredential
                     {
-                        UserName = "mcd_developer@outlook.com",
-                        Password = "mcdDeveloper1234"
-                        //UserName = ConfigurationSettings.AppSettings["Email.User"],
-                        //Password = ConfigurationSettings.AppSettings["Email.Password"]
+                        UserName = ConfigurationManager.AppSettings["Email.User"],
+                        Password = ConfigurationManager.AppSettings["Email.Password"]
                     };
                     smtp.Credentials = credential;
-                    smtp.Host = "smtp-mail.outlook.com";
-                    //smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
-                    smtp.Port = 587;
-                    //smtp.Port = port;
+                    smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
+                    smtp.Port = port;
                     smtp.EnableSsl = true;
                     smtp.Send(message);
                 }

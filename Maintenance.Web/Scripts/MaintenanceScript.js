@@ -66,7 +66,7 @@
         var storetext = $("#storetext").val();
         $.ajax({
             url: "/Maintenance/StoreRecords",
-            data: storetext,
+            data: { "storetext": storetext },
             success: function (result) {
                 $("#search_results").html(result);
             }
@@ -77,7 +77,7 @@
         var repairtext = $("#repairtext").val();
         $.ajax({
             url: "/Maintenance/RepairTypeRecords",
-            data: repairtext,
+            data: { "repairtext": repairtext },
             success: function (result) {
                 $("#search_results").html(result);
             }
@@ -88,19 +88,19 @@
         var vendortext = $("#vendortext").val();
         $.ajax({
             url: "/Maintenance/VendorRecords",
-            data: vendortext,
+            data: { "vendortext": vendortext},
             success: function (result) {
                 $("#search_results").html(result);
             }
         });
     })
     //date
-    $("#date_search").click(function (dateone, datetwo) {
-        var dateone = $("#startedate").val();
-        var datetwo = $("#enddate").val();
+    $("#date_search").click(function (startdate, enddate) {
+        var startdate = $("#startdate").val();
+        var enddate = $("#enddate").val();
         $.ajax({
             url: "/Maintenance/DateRecords",
-            data: dateone, datetwo,
+            data: { "startdate": startdate, "enddate": enddate },
             success: function (result) {
                 $("#search_results").html(result);
             }
