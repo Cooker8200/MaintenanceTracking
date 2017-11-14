@@ -144,6 +144,7 @@ namespace Maintenance.Web.Controllers
             var recordCount = Convert.ToInt32(StoreSearchRecords.Count());
             if (recordCount == 0)
             {
+                ViewBag.Data = storetext;
                 return PartialView("_NoRecordsFound", storetext);
             }
             else
@@ -160,6 +161,7 @@ namespace Maintenance.Web.Controllers
             var recordCount = Convert.ToInt32(DateSearchRecords.Count());
             if (recordCount == 0)
             {
+                ViewBag.Data = startdate + " and " + enddate;
                 return PartialView("_NoRecordsFound");
             }
             else
@@ -174,6 +176,7 @@ namespace Maintenance.Web.Controllers
             var recordCount = Convert.ToInt32(VendorSearchRecords.Count());
             if (recordCount == 0)
             {
+                ViewBag.Data = vendortext;
                 return PartialView("_NoRecordsFound", vendortext);
             }
             else
@@ -189,7 +192,8 @@ namespace Maintenance.Web.Controllers
             var recordCount = Convert.ToInt32(RepairTypeRecords.Count());
             if (recordCount == 0)
             {
-                return PartialView("_NoRecordsFound", repairtext);
+                ViewBag.Data = repairtext;
+                return PartialView("_NoRecordsFound");
             }
             else
             {

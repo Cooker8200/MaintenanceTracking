@@ -45,9 +45,11 @@ namespace Maintenance.Business
                 message.Subject = string.Format("OTP Request");
                 message.Body = body;
                 message.IsBodyHtml = true;
+                
 
                 using (var smtp = new SmtpClient())
                 {
+                    smtp.UseDefaultCredentials = false;
                     var credential = new NetworkCredential
                     {
                         UserName = ConfigurationManager.AppSettings["Email.User"],

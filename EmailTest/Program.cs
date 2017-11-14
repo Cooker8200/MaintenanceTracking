@@ -18,7 +18,7 @@ namespace EmailTest
             var Equipment = "POS";
             var Location = "Front Counter";
             var Problem = "Reg 3 not powering on";
-            var StoreName = Console.ReadLine();
+            var StoreName = "Ballwin";
 
             test.SendOtp(SendTo, Name, Equipment, Location, Problem, StoreName);
         }
