@@ -53,3 +53,4 @@ C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Mainten
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.servsafe_change.resources
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.none.resources
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.update.resources
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.dbupdate.resources

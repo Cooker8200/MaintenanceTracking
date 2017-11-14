@@ -38,14 +38,12 @@ namespace Maintenance.Business
                 //todo fix webconfig errors
                 var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                 var body = email;
-                //var body = "<p>Support Request From: {0}, {1}</p><p>Problem: {4}</p><p>{2} at {3}</p>";
                 var message = new MailMessage();
                 message.To.Add(new MailAddress(ConfigurationManager.AppSettings["Email.SendTo"]));      //change to SendTo upon deployment
                 //message.CC.Add(new MailAddress(ConfigurationManager.AppSettings[" "]));               //could change to office email in live
                 message.From = new MailAddress(ConfigurationManager.AppSettings["Email.User"]);
                 message.Subject = string.Format("OTP Request");
                 message.Body = body;
-                //message.Body = string.Format(body, SendTo, Name, Equipment, Location, Problem);
                 message.IsBodyHtml = true;
 
                 using (var smtp = new SmtpClient())
