@@ -110,33 +110,51 @@ namespace Maintenance.Utilities
 
                 for (var s = 0; s < stores.Count(); s++)
                 {
-
-                    for (var i = 0; i < records.Count(); i++)
+                    var storeResults = HepATask.StoreHepAReport(stores[s].Name);
+                    if (storeResults.Count() == 0)
                     {
-
-                        if (stores[s].Name == records[i].Store)
+                        using (StreamReader read = new StreamReader(emailTemplate))
                         {
-                            var storeResults = HepATask.StoreHepAReport(stores[s].Name);
-                            using (StreamReader read = new StreamReader(emailTemplate))
-                            {
-                                message = read.ReadToEnd();
-                            }
-                            message = message.Replace("$$StoreName$$", records[i].Store);
-                            StringBuilder details = new StringBuilder("").AppendLine();
-                            for (var a = 0; a < storeResults.Count(); a ++)
-                            {
-                                var count = 0;
-                                if (storeResults[a].Store == stores[s].Name)
-                                {
-                                    var firstShot = storeResults[a].FirstShot.ToString();
-                                    var shortDate = DateTime.Parse(firstShot).ToString("dd-MMM-yyyy");
-                                    details.Append(storeResults[a].EmpName + " -- " + shortDate ).AppendLine();
-                                    details.AppendLine();
-                                    count++;
-                                }
-                                records.Remove(records[i]);
-                            }
-                            message = message.Replace("$$Details$$", details.ToString());
+                            message = read.ReadToEnd();
+                        }
+                        message = message.Replace("$$StoreName$$", stores[s].Name);
+                        message = message.Replace("$$Details$$", "Consult written records to verify accuracy.  No records were returned from database.");
+
+                        //send mail message
+                        var sendAddress = ConfigurationManager.AppSettings["Email.Admin"];
+                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
+                        var mail = new MailMessage();
+                        mail.Body = message;
+                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
+                        mail.To.Add(sendAddress);
+                        //option cc email address
+                        //mail.CC.Add(new MailAddress(" "));
+                        mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy");
+                        mail.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
+                        smtp.Port = port;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
+                        smtp.EnableSsl = true;
+                        //smtp.Send(mail);
+                    }
+                    if (storeResults.Count() != 0)
+                    {
+                        using (StreamReader read = new StreamReader(emailTemplate))
+                        {
+                            message = read.ReadToEnd();
+                        }
+                        message = message.Replace("$$StoreName$$", stores[s].Name);
+                        StringBuilder details = new StringBuilder("").AppendLine();
+                        for (var a = 0; a < storeResults.Count(); a++)
+                        {
+                            var firstShot = storeResults[a].FirstShot.ToString();
+                            var shortDate = DateTime.Parse(firstShot).ToString("dd-MMM-yyyy");
+                            details.Append(storeResults[a].EmpName + " -- " + shortDate).AppendLine();
+                            details.AppendLine();
+                        }
+                        message = message.Replace("$$Details$$", details.ToString());
                             //send mail message
                             var sendAddress = ConfigurationManager.AppSettings["Email." + stores[s].Name];
                             var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
@@ -155,25 +173,59 @@ namespace Maintenance.Utilities
                             smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
                             smtp.EnableSsl = true;
                             //smtp.Send(mail);
-
                         }
                     }
+
+                    //for (var i = 0; i < records.Count(); i++)
+                    //{
+
+                    //    if (stores[s].Name == records[i].Store)
+                    //    {
+                    //        //var storeResults = HepATask.StoreHepAReport(stores[s].Name);
+                    //        using (StreamReader read = new StreamReader(emailTemplate))
+                    //        {
+                    //            message = read.ReadToEnd();
+                    //        }
+
+
+                    //        message = message.Replace("$$Details$$", details.ToString());
+                    //        //send mail message
+                    //        var sendAddress = ConfigurationManager.AppSettings["Email." + stores[s].Name];
+                    //        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
+                    //        var mail = new MailMessage();
+                    //        mail.Body = message;
+                    //        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
+                    //        mail.To.Add(sendAddress);
+                    //        //option cc email address
+                    //        //mail.CC.Add(new MailAddress(" "));
+                    //        mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy");
+                    //        mail.IsBodyHtml = true;
+                    //        SmtpClient smtp = new SmtpClient();
+                    //        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
+                    //        smtp.Port = port;
+                    //        smtp.UseDefaultCredentials = false;
+                    //        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
+                    //        smtp.EnableSsl = true;
+                    //        //smtp.Send(mail);
+
+                    //    }
+                    //}
                 }
 
             }
             //Monthly ServSafe Reporting
-            if (dayOfMonth == 1)
-            {
-                //todo finish
-            }
-            //Monthly repair reporting -- end of month
-            if (dayOfMonth == 30 || dayOfMonth == 31)   //todo fix for Feb & leap years
-            {
-                //todo finish
-            }
+            //if (dayOfMonth == 1)
+            //{
+            //    //todo finish
+            //}
+            ////Monthly repair reporting -- end of month
+            //if (dayOfMonth == 30 || dayOfMonth == 31)   //todo fix for Feb & leap years
+            //{
+            //    //todo finish
+            //}
 
         }
 
     }
-}
+
 
