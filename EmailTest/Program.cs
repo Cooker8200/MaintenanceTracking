@@ -11,6 +11,9 @@ namespace EmailTest
     {
         static void Main(string[] args)
         {
+            //quick test area
+            
+            //test method for contact manager
             var test = new ContactManager();
 
             var SendTo = "Cooker8200@hotmail.com";
