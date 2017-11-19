@@ -121,7 +121,8 @@ namespace Maintenance.Utilities
                         message = message.Replace("$$Details$$", "Consult written records to verify accuracy.  No records were returned from database.");
 
                         //send mail message
-                        var sendAddress = ConfigurationManager.AppSettings["Email.Admin"];
+                        var sendAddress = ConfigurationManager.AppSettings["Email.Admin"];   //change for prodution -- solution for test only
+                        //var sendAddress = ConfigurationManager.AppSettings["Email." + stores[s].Name];
                         var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                         var mail = new MailMessage();
                         mail.Body = message;
@@ -175,43 +176,7 @@ namespace Maintenance.Utilities
                             //smtp.Send(mail);
                         }
                     }
-
-                    //for (var i = 0; i < records.Count(); i++)
-                    //{
-
-                    //    if (stores[s].Name == records[i].Store)
-                    //    {
-                    //        //var storeResults = HepATask.StoreHepAReport(stores[s].Name);
-                    //        using (StreamReader read = new StreamReader(emailTemplate))
-                    //        {
-                    //            message = read.ReadToEnd();
-                    //        }
-
-
-                    //        message = message.Replace("$$Details$$", details.ToString());
-                    //        //send mail message
-                    //        var sendAddress = ConfigurationManager.AppSettings["Email." + stores[s].Name];
-                    //        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
-                    //        var mail = new MailMessage();
-                    //        mail.Body = message;
-                    //        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
-                    //        mail.To.Add(sendAddress);
-                    //        //option cc email address
-                    //        //mail.CC.Add(new MailAddress(" "));
-                    //        mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy");
-                    //        mail.IsBodyHtml = true;
-                    //        SmtpClient smtp = new SmtpClient();
-                    //        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
-                    //        smtp.Port = port;
-                    //        smtp.UseDefaultCredentials = false;
-                    //        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
-                    //        smtp.EnableSsl = true;
-                    //        //smtp.Send(mail);
-
-                    //    }
-                    //}
                 }
-
             }
             //Monthly ServSafe Reporting
             //if (dayOfMonth == 1)
