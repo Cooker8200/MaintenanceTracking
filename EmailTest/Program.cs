@@ -1,4 +1,4 @@
-﻿using Maintenance.Business;
+using Maintenance.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +11,7 @@ namespace EmailTest
     {
         static void Main(string[] args)
         {
-            //test for otp request
+            //test method for contact manager
             var test = new ContactManager();
             var SendTo = "Cooker8200@hotmail.com";
             var Name = "Matt";
@@ -22,9 +22,8 @@ namespace EmailTest
 
             test.SendOtp(SendTo, Name, Equipment, Location, Problem, StoreName);
             
-            //test for ??
+            //test method for maintenance manager
             var dataTest = new MaintenanceManager();
-            
         }
     }
 }
