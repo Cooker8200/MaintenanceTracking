@@ -47,7 +47,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -101,7 +103,9 @@
     <Folder Include="WeeklyHepA_Report\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Email_Template\HTMLPage1.html" />
+    <Content Include="Email_Template\HepA_Store_Template.html" />
+    <Content Include="Email_Template\HepA_Sup_Template.html" />
+    <Content Include="Email_Template\ServSafe_Template.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

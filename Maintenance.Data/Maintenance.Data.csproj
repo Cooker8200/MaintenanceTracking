@@ -73,6 +73,14 @@
     <Compile Include="Migrations\201711140332021_db update.Designer.cs">
       <DependentUpon>201711140332021_db update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711171653406_db add Stores.cs" />
+    <Compile Include="Migrations\201711171653406_db add Stores.Designer.cs">
+      <DependentUpon>201711171653406_db add Stores.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711171702244_db change.cs" />
+    <Compile Include="Migrations\201711171702244_db change.Designer.cs">
+      <DependentUpon>201711171702244_db change.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -101,6 +109,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711140332021_db update.resx">
       <DependentUpon>201711140332021_db update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171653406_db add Stores.resx">
+      <DependentUpon>201711171653406_db add Stores.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711171702244_db change.resx">
+      <DependentUpon>201711171702244_db change.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

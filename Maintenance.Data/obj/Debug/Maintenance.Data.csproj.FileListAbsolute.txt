@@ -54,3 +54,5 @@ C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Mainten
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.none.resources
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.update.resources
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.dbupdate.resources
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.dbaddStores.resources
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.dbchange.resources

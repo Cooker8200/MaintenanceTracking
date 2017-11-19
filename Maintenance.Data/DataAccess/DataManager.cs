@@ -120,12 +120,23 @@ namespace Maintenance.Data.DataAccess
 
         }
 
-        public Array WeeklyReport()
+        public List<HepA> WeeklyReport()
         {
-            //var HepA_Weekly = db.HepA.Where(x => x.SecondShot == null).ToList();
-            var HepA_Weekly = db.Database.SqlQuery<HepA>("hepsp_weekly").ToArray();
+            var HepA_Weekly = db.HepA.Where(x => x.SecondShot == null).OrderBy(y => y.Store).ToList();
+            //var HepA_Weekly = db.Database.SqlQuery<HepA>("hepsp_weekly").ToList();
             return HepA_Weekly;
+        }
 
+        public List<HepA> StoreHepAReport(string input)
+        {
+            var HepA_Store = db.HepA.Where(x => x.SecondShot == null && x.Store == input).ToList();
+            return HepA_Store;
+        }
+
+        public List<Stores> StoreList()
+        {
+            var Stores = db.Stores.ToList();
+            return Stores;
         }
 
         public string ServiceAddHepA(string name, DateTime firstshot, DateTime? secondshot, string store)

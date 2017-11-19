@@ -23,10 +23,22 @@ namespace Maintenance.Business
             return ManagerHepA;
         }
 
-        public Array WeeklyReport()
+        public List<HepA> WeeklyReport()
         {
             var WeeklyReport = _dataAccess.WeeklyReport();
             return WeeklyReport;
+        }
+
+        public List<Stores> StoreList()
+        {
+            var Stores = _dataAccess.StoreList();
+            return Stores;
+        }
+
+        public List<HepA> StoreHepAReport(string input)
+        {
+            var HepA_Store = _dataAccess.StoreHepAReport(input);
+            return HepA_Store;
         }
     }
 }
