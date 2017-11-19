@@ -11,11 +11,8 @@ namespace EmailTest
     {
         static void Main(string[] args)
         {
-            //quick test area
-            
             //test method for contact manager
             var test = new ContactManager();
-
             var SendTo = "Cooker8200@hotmail.com";
             var Name = "Matt";
             var Equipment = "POS";
@@ -24,6 +21,9 @@ namespace EmailTest
             var StoreName = "Ballwin";
 
             test.SendOtp(SendTo, Name, Equipment, Location, Problem, StoreName);
+            
+            //test method for maintenance manager
+            var dataTest = new MaintenanceManager();
         }
     }
 }
