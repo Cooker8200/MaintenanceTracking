@@ -138,6 +138,12 @@ namespace Maintenance.Data.DataAccess
             var Stores = db.Stores.ToList();
             return Stores;
         }
+        
+        public List<ServSafe> ServSafeList()
+        {
+            var SS_Records = db.ServSafe.ToList();
+            return SS_Records;
+        }
 
         public string ServiceAddHepA(string name, DateTime firstshot, DateTime? secondshot, string store)
         {
@@ -153,5 +159,7 @@ namespace Maintenance.Data.DataAccess
             return noSecondShot.EmpName;
                         
         }
+        
+        
     }
 }
