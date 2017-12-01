@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Maintenance.Models;
 using System.Data.Entity;
+using Maintenance.Models.ViewModels;
 
 namespace Maintenance.Data.DataAccess
 {
@@ -88,9 +89,11 @@ namespace Maintenance.Data.DataAccess
             return DataEditRequest;
         }
 
-        public IEnumerable<HepA> HepARecords (string searchtext)
+        public IEnumerable<HepA_ViewModels> HepARecords (int searchval)
         {
-            var DataHepA = db.HepA.Where(x => x.Store.Contains(searchtext));
+            //todo update to take new parameters..change up through application
+            var DataHepA = db.Database.SqlQuery<HepA_ViewModels>("hepsp_search" + " " + searchval).ToList();
+            //var DataHepA = db.HepA.Where(x => x.Store.Contains(searchtext));
             return DataHepA;
         }
 

@@ -22,12 +22,13 @@ namespace Maintenance.Web.Controllers
             return View("HepA");
         }
 
-        public ActionResult Search(string searchtext)
+        public ActionResult Search(string searchtext, int searchval)
         {
-            var HepAResults = _HepAmanager.HepASearch(searchtext);
+            var HepAResults = _HepAmanager.HepASearch(searchval);
             var resultsCount = Convert.ToInt32(HepAResults.Count());
             if (resultsCount == 0)
             {
+                ViewBag.Name = searchtext;
                 return PartialView("_NoRecordsFound");
             }
             else

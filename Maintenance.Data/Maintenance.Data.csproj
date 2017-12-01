@@ -81,6 +81,10 @@
     <Compile Include="Migrations\201711171702244_db change.Designer.cs">
       <DependentUpon>201711171702244_db change.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201711301923166_db fk update.cs" />
+    <Compile Include="Migrations\201711301923166_db fk update.Designer.cs">
+      <DependentUpon>201711301923166_db fk update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -115,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201711171702244_db change.resx">
       <DependentUpon>201711171702244_db change.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711301923166_db fk update.resx">
+      <DependentUpon>201711301923166_db fk update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -22,5 +22,7 @@ namespace Maintenance.Data
         public DbSet<ServSafe> ServSafe { get; set; }
 
         public DbSet<Stores> Stores { get; set; }
+
+        public DbSet<Employees> Employees { get; set; }
     }
 }

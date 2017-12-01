@@ -69,12 +69,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Employees.cs" />
     <Compile Include="HepA.cs" />
     <Compile Include="MaintenanceLog.cs" />
     <Compile Include="OtpRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServSafe.cs" />
     <Compile Include="Stores.cs" />
+    <Compile Include="ViewModels\HepA_ViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Maintenance.Data.DataAccess;
 using Maintenance.Models;
+using Maintenance.Models.ViewModels;
 
 namespace Maintenance.Business
 {
@@ -17,9 +18,9 @@ namespace Maintenance.Business
 
         private Data.DataAccess.DataManager _dataAccess;
 
-        public IEnumerable<HepA> HepASearch (string searchtext)
+        public IEnumerable<HepA_ViewModels> HepASearch (int searchval)
         {
-            var ManagerHepA = _dataAccess.HepARecords(searchtext);
+            var ManagerHepA = _dataAccess.HepARecords(searchval);
             return ManagerHepA;
         }
 
