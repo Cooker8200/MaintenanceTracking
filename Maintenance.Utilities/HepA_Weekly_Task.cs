@@ -120,7 +120,9 @@ namespace Maintenance.Utilities
                         message = message.Replace("$$StoreName$$", stores[s].Name);
                         message = message.Replace("$$Details$$", "Consult written records to verify accuracy.  No records were returned from database.");
 
-                        var sendAddress = ConfigurationManager.AppSettings["Email.Admin"];
+                        //send mail message
+                        var sendAddress = ConfigurationManager.AppSettings["Email.Admin"];   //change for prodution -- solution for test only
+                        //var sendAddress = ConfigurationManager.AppSettings["Email." + stores[s].Name];
                         var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                         var mail = new MailMessage();
                         mail.Body = message;
@@ -170,17 +172,13 @@ namespace Maintenance.Utilities
                             //smtp.Send(mail);
                         }
                     }
-
-                //supervisor reporting structure
-                
-
                 }
-
             }
             //Monthly ServSafe Reporting
             //if (dayOfMonth == 1)
             //{
-            //    //todo finish
+                //todo finish
+                
             //}
             ////Monthly repair reporting -- end of month
             //if (dayOfMonth == 30 || dayOfMonth == 31)   //todo fix for Feb & leap years
