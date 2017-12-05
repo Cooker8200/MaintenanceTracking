@@ -97,9 +97,10 @@ namespace Maintenance.Data.DataAccess
             return DataHepA;
         }
 
-        public IEnumerable<ServSafe> ServSafeData(string searchtext)
+        public IEnumerable<ServSafe_ViewModels> ServSafeData(int searchval)
         {
-            var DataServSafe = db.ServSafe.Where(x => x.Store.Contains(searchtext));
+            var DataServSafe = db.Database.SqlQuery<ServSafe_ViewModels>("SSsp_search" + " " + searchval).ToList();
+            //var DataServSafe = db.ServSafe.Where(x => x.Store.Contains(searchtext));
             return DataServSafe;
         }
 

@@ -20,8 +20,6 @@ namespace Maintenance.Business
             //create email template
             string email;
             var emailFilePath = HttpContext.Current.Server.MapPath("~/Templates/Contact_Template.html");
-            //var emailFilePath = ("~/Email_Template/Contact_Template.html");
-            //var emailFilePath = ("C:/Users/Jennifer/Desktop/MaintenanceTracking/Maintenance.Business/Email_Template/Contact_Template.html");
             using (var streamReader = new StreamReader(emailFilePath))
             {
                 email = streamReader.ReadToEnd();
@@ -35,7 +33,6 @@ namespace Maintenance.Business
             //generate email
             try
             {
-                //todo fix webconfig errors
                 var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                 var body = email;
                 var message = new MailMessage();

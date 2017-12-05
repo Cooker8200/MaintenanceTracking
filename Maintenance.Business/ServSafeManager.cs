@@ -1,4 +1,5 @@
 ﻿using Maintenance.Models;
+using Maintenance.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,9 +17,9 @@ namespace Maintenance.Business
 
         private Data.DataAccess.DataManager _dataAccess;
 
-        public IEnumerable<ServSafe> ServSafeManagerSearch(string searchtext)
+        public IEnumerable<ServSafe_ViewModels> ServSafeManagerSearch(int searchval)
         {
-            var ManagerServSafe = _dataAccess.ServSafeData(searchtext);
+            var ManagerServSafe = _dataAccess.ServSafeData(searchval);
             return ManagerServSafe;
         }
     }

@@ -20,13 +20,14 @@ namespace Maintenance.Web.Controllers
             return View();
         }
 
-        public ActionResult Search (string searchtext)
+        public ActionResult Search (string searchtext, int searchval)
         {
-            var results = _ServSafeManager.ServSafeManagerSearch(searchtext);
+            var results = _ServSafeManager.ServSafeManagerSearch(searchval);
             var recordCount = Convert.ToInt32(results.Count());
             if (recordCount == 0)
             {
-                return PartialView("_NoRecordsFound");
+                ViewBag.Name = searchtext;
+                return PartialView("_NoRecordsFound", ViewBag.Name);
             }
             else
             {

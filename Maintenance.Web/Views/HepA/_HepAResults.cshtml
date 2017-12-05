@@ -21,10 +21,20 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.FirstShot)
+            @{ 
+                var FirstDate = item.FirstShot.ToString();
+            }
+            @Html.DisplayFor(modelItem => FirstDate)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.SecondShot)
+            @{ 
+                if (item.SecondShot == null)
+                {
+
+                }
+                var SecondDate = item.SecondShot.ToString();
+            }
+            @Html.DisplayFor(modelItem => SecondDate)
         </td>
     </tr>
 }

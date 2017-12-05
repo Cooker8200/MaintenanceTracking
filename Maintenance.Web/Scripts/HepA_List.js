@@ -1,6 +1,6 @@
 ﻿$(document).ready(function () {
 
-    //dropdown list for HepA shot search
+    //dropdown list for HepA shot search        //todo pull from database
     var stores = {
         "1": "University City", 
         "2": "Ballwin",
@@ -38,15 +38,11 @@
 
     s.appendTo("#list");
 
-    //var searchtext = $(s).selected;
-
     $("#hep_search").click(function (searchtext, searchval) {
         var searchval = $(s).find(":selected").val();
         var searchtext = $(s).find(":selected").text();
-        //alert(searchval);
         $.ajax({
             data: { "searchval" : searchval, "searchtext": searchtext },
-            //data: { "searchtext": searchtext },
             url: '/HepA/Search',
             success: function (result) {
                 $("#hepa_results").html(result);

@@ -77,6 +77,7 @@
     <Compile Include="ServSafe.cs" />
     <Compile Include="Stores.cs" />
     <Compile Include="ViewModels\HepA_ViewModels.cs" />
+    <Compile Include="ViewModels\ServSafe_ViewModels.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
