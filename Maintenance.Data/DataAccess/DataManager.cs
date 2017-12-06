@@ -15,6 +15,7 @@ namespace Maintenance.Data.DataAccess
 
         //public Data.Entities dbtwo = new Data.Entities();
 
+        //get list of all maintenance records
         public IEnumerable<MaintenanceLog> List()
         {
             var MaintenanceList = db.MaintenanceLog.ToList();
@@ -28,6 +29,7 @@ namespace Maintenance.Data.DataAccess
         //    db.SaveChanges();
         //}
 
+        //create maintenance record
         public void Create(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail, string storeName)
         {
             var storeNumber = Convert.ToInt32(Store);  
@@ -44,12 +46,14 @@ namespace Maintenance.Data.DataAccess
             db.SaveChanges();
         }
 
+        //lookup maintenence record based on sql id
         public MaintenanceLog FindId(int? id)
         {
             var dbitem = db.MaintenanceLog.Find(id);
             return dbitem;
         }
 
+        //delete maintenance record
         public void Delete(int? id)
         {
             var dbitem = db.MaintenanceLog.Find(id);
@@ -57,6 +61,7 @@ namespace Maintenance.Data.DataAccess
             db.SaveChanges();
         }
 
+        //maintenance search functions
         public IEnumerable<MaintenanceLog> StoreSearch(string storetext)   
         {
             var DataStoreSearch = db.MaintenanceLog.Where(x => x.StoreName.Contains(storetext));
@@ -83,24 +88,27 @@ namespace Maintenance.Data.DataAccess
 
         }
 
+        //search records for specific store name
         public IEnumerable<MaintenanceLog> StoreRecordsEdit (string edittext)
         {
             var DataEditRequest = db.MaintenanceLog.Where(x => x.StoreName.Contains(edittext));
             return DataEditRequest;
         }
 
+        //search Hep A records
         public IEnumerable<HepA_ViewModels> HepARecords (int searchval)
         {
             //todo update to take new parameters..change up through application
             var DataHepA = db.Database.SqlQuery<HepA_ViewModels>("hepsp_search" + " " + searchval).ToList();
-            //var DataHepA = db.HepA.Where(x => x.Store.Contains(searchtext));
+            //var DataHepA = db.HepA.Where(x => x.Store.Contains(searchtext)); --- old method before relational database
             return DataHepA;
         }
 
+        //search ServSafe records
         public IEnumerable<ServSafe_ViewModels> ServSafeData(int searchval)
         {
             var DataServSafe = db.Database.SqlQuery<ServSafe_ViewModels>("SSsp_search" + " " + searchval).ToList();
-            //var DataServSafe = db.ServSafe.Where(x => x.Store.Contains(searchtext));
+            //var DataServSafe = db.ServSafe.Where(x => x.Store.Contains(searchtext)); --- old method before relational database
             return DataServSafe;
         }
 
@@ -123,16 +131,19 @@ namespace Maintenance.Data.DataAccess
             db.SaveChanges();
 
         }
+
         //weekly report function
-        public List<HepA> WeeklyReport()
+        public IEnumerable<HepA_ViewModels> WeeklyReport()
         {
-            var HepA_Weekly = db.Database.SqlQuery<HepA>("Weeklysp_HepASearch").ToList();
+            var HepA_Weekly = db.Database.SqlQuery<HepA_ViewModels>("Weeklysp_HepASearch").ToList();
             return HepA_Weekly;
         }
+    
         //weekly report function
-        public List<HepA> StoreHepAReport(string input)
+        public List<HepA_ViewModels> StoreHepAReport(int input)
         {
-            var HepA_Store = db.HepA.Where(x => x.SecondShot == null && x.Store == input).ToList();
+            var HepA_Store = db.Database.SqlQuery<HepA_ViewModels>("Weeklysp_HepA_StoreRecords " + input).ToList();
+            //var HepA_Store = db.HepA.Where(x => x.SecondShot == null && x.Store == input).ToList();
             return HepA_Store;
         }
 

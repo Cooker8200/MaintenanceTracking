@@ -20,6 +20,7 @@ namespace Maintenance.Web.Controllers
             return View();
         }
 
+        //search ServSafe records
         public ActionResult Search (string searchtext, int searchval)
         {
             var results = _ServSafeManager.ServSafeManagerSearch(searchval);

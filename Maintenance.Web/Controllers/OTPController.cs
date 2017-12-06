@@ -119,18 +119,16 @@ namespace Maintenance.Web.Controllers
             return View();
         }
 
-
+        //send OTP help request
         public ActionResult SendOtp (string SendTo, string Name, string Equipment, string Location, string Problem, string StoreName)
         {
-            //var stores = (List<SelectListItem>)Session["StoreName"];
-            //var store = stores.FirstOrDefault(x => x.Value == SendTo);
-            //var storeName = store.Text;
 
             _contact.SendOtp(SendTo, Name, Equipment, Location, Problem, StoreName);
 
             return View("Sent");
         }
 
+        //Old method using model
         //public ActionResult SendOtp(Maintenance.Models.OtpRequest model, string SendTo)
         //{
 

@@ -59,3 +59,5 @@ C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Mainten
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.dbfkupdate.resources
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.dbupdate2.resources
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.modelchange.resources
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.entitysucks.resources
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.entitychange2.resources

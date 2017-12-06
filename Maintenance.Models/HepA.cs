@@ -19,7 +19,6 @@ namespace Maintenance.Models
 
         public int EmpId { get; set; }
 
-        public string Store { get; set; }
 
 
 

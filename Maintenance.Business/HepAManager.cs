@@ -18,13 +18,15 @@ namespace Maintenance.Business
 
         private Data.DataAccess.DataManager _dataAccess;
 
+        //Hep A search function
         public IEnumerable<HepA_ViewModels> HepASearch (int searchval)
         {
             var ManagerHepA = _dataAccess.HepARecords(searchval);
             return ManagerHepA;
         }
 
-        public List<HepA> WeeklyReport()
+        
+        public IEnumerable<HepA_ViewModels> WeeklyReport()
         {
             var WeeklyReport = _dataAccess.WeeklyReport();
             return WeeklyReport;
@@ -36,7 +38,7 @@ namespace Maintenance.Business
             return Stores;
         }
 
-        public List<HepA> StoreHepAReport(string input)
+        public List<HepA_ViewModels> StoreHepAReport(int input)
         {
             var HepA_Store = _dataAccess.StoreHepAReport(input);
             return HepA_Store;

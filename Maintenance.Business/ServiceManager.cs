@@ -10,6 +10,7 @@ namespace Maintenance.Business
 {
     public class ServiceManager
     {
+        //web services manager
         public ServiceManager()
         {
             _dataAccess = new Data.DataAccess.DataManager();

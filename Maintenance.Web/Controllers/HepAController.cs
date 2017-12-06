@@ -22,6 +22,7 @@ namespace Maintenance.Web.Controllers
             return View("HepA");
         }
 
+        //search Hep A records
         public ActionResult Search(string searchtext, int searchval)
         {
             var HepAResults = _HepAmanager.HepASearch(searchval);

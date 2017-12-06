@@ -8,6 +8,7 @@ using Maintenance.Models;
 
 namespace Maintenance.Business
 {
+    //methods for passing data between web and data layer
     public class MaintenanceManager
     {
         public MaintenanceManager()

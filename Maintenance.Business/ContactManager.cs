@@ -31,6 +31,7 @@ namespace Maintenance.Business
             email = email.Replace("$$Problem$$", Problem);
             email = email.Replace("$$Name$$", Name);
             //generate email
+            //all values pull from webconfig file
             try
             {
                 var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
@@ -39,7 +40,7 @@ namespace Maintenance.Business
                 message.To.Add(new MailAddress(ConfigurationManager.AppSettings["Email.SendTo"]));      //change to SendTo upon deployment
                 //message.CC.Add(new MailAddress(ConfigurationManager.AppSettings[" "]));               //could change to office email in live
                 message.From = new MailAddress(ConfigurationManager.AppSettings["Email.User"]);
-                message.Subject = string.Format("OTP Request");
+                message.Subject = string.Format("OTP Request, " + StoreName);
                 message.Body = body;
                 message.IsBodyHtml = true;
                 

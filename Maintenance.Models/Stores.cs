@@ -15,11 +15,11 @@ namespace Maintenance.Models
 
         public string Name { get; set; }
 
-        public int StoreNumber { get; set; }
+        public int? StoreNumber { get; set; }
 
         public string Address { get; set; }
 
-        public int Phone { get; set; }
+        public int? Phone { get; set; }
 
         public string Email { get; set; }
 
@@ -27,11 +27,11 @@ namespace Maintenance.Models
 
         public string State { get; set; }
 
-        public int ZipCode { get; set; }
+        public int? ZipCode { get; set; }
 
-        public int Supervisor { get; set; }
+        public int? Supervisor { get; set; }
 
-        public int Otp { get; set; }
+        public int? Otp { get; set; }
 
     }
 }
