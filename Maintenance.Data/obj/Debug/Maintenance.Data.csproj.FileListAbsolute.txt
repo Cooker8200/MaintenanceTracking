@@ -58,3 +58,4 @@ C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Mainten
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.dbchange.resources
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.dbfkupdate.resources
 C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.dbupdate2.resources
+C:\Users\Jennifer\Desktop\MaintenanceTracking\Maintenance.Data\obj\Debug\Maintenance.Data.Migrations.modelchange.resources

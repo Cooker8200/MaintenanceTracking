@@ -12,11 +12,12 @@ namespace Maintenance.Models
         [Key]
         public int Id { get; set; }
 
-        public string EmpName { get; set; }
         [DataType(DataType.Date)]
         public DateTime? FirstShot { get; set; }
         [DataType(DataType.Date)]
         public DateTime? SecondShot { get; set; }
+
+        public int EmpId { get; set; }
 
         public string Store { get; set; }
 

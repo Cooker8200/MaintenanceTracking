@@ -22,17 +22,32 @@
         </td>
         <td>
             @{ 
-                var FirstDate = item.FirstShot.ToString();
+                var FirstDate = "";
+                if (item.FirstShot == null)
+                {
+                    FirstDate = "NO RECORD";
+                }
+                else
+                {
+                    var temp1 = Convert.ToDateTime(item.FirstShot);
+                    FirstDate = temp1.ToString("dd, MMMM, yyyy");
+                }
             }
             @Html.DisplayFor(modelItem => FirstDate)
         </td>
         <td>
             @{ 
+                var SecondDate = "";
                 if (item.SecondShot == null)
                 {
-
+                    
+                    SecondDate = "NO RECORD";
                 }
-                var SecondDate = item.SecondShot.ToString();
+                else
+                {
+                    var temp2 = Convert.ToDateTime(item.SecondShot);
+                    SecondDate = temp2.ToString("dd, MMMM, yyyy");
+                }
             }
             @Html.DisplayFor(modelItem => SecondDate)
         </td>
@@ -40,3 +55,6 @@
 }
 
 </table>
+
+@Scripts.Render("~/Scripts/Shared.js")
+

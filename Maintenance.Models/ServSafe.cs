@@ -12,12 +12,10 @@ namespace Maintenance.Models
         [Key]
         public int Id { get; set; }
 
-        public string EmpName { get; set; }
-
         public string Proctor { get; set; }
         [DataType(DataType.Date)]
         public DateTime Expiration { get; set; }
 
-        public string Store { get; set; }
+        public int EmpId { get; set; }
     }
 }

@@ -1,19 +1,6 @@
 ﻿$(document).ready(function () {
 
-    $("#goto_maint").click(function () {        //todo revist, what is this doing?  anything?
-        $.ajax({
-            url: '../Maintenance/MaintenanceHome',
-            success: function (result) {
-                $("#content").html(result)
-            }
-        })
-    });
-
-    //records color coding                                      //todo fix color highlighting
-    //$("tr:even").css("background-color", "#e6e6e6");    
-
-    //$("tr:odd").css("background-color", "#ffffff");
-
+    //row highlighting for tables
     $("tr").hover(function () {
         $(this).css("background-color", "#ffff00")
     },
@@ -24,6 +11,8 @@
             //        $(this).css("background-color", "#ffffff")
         });
 
+
+    //maintenance search AJAX calls
     //bring in search store
     $("#search_store").click(function () {
         $.ajax({

@@ -12,6 +12,10 @@ namespace Maintenance.Web
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/MaintenanceScript.js"));
 
+            //todo -- how to create and use bundles
+            bundles.Add(new ScriptBundle("~/bundles/shared").Include(
+                        "~/Scripts/Shared.js"));
+
             bundles.Add(new ScriptBundle("~/bundles/Edit").Include(
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/MaintenanceEdit.js",

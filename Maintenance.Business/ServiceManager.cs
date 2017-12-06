@@ -15,10 +15,12 @@ namespace Maintenance.Business
             _dataAccess = new Data.DataAccess.DataManager();
         }
         private Data.DataAccess.DataManager _dataAccess;
-        public string ServiceAddRecord(string name, DateTime firstshot, DateTime? secondshot, string store)
-        {
-            var Service = _dataAccess.ServiceAddHepA(name, firstshot, secondshot, store);
-            return Service;
-        }
+
+        //todo rewrite service for new database
+        //public string ServiceAddRecord(string name, DateTime firstshot, DateTime? secondshot, string store)
+        //{
+        //    var Service = _dataAccess.ServiceAddHepA(name, firstshot, secondshot, store);
+        //    return Service;
+        //}
     }
 }

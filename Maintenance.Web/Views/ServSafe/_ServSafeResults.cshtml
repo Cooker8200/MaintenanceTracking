@@ -25,7 +25,7 @@
         </td>
         <td>
             @{ 
-                var ExpDate = item.Expiration.ToString("dd, MMMM, yyyy");
+                var ExpDate = item.Expiration.ToString("MMMM, yyyy");
 
             }
             
@@ -35,3 +35,5 @@
 }
 
 </table>
+
+@Scripts.Render("~/Scripts/Shared.js")

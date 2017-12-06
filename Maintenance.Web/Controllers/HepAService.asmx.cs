@@ -25,19 +25,20 @@ namespace Maintenance.Web.Controllers
         //    return "Hello World";
         //}
 
-        public HepAService()
-        {
-            _ServiceManager = new Maintenance.Business.ServiceManager();
-        }
+        //    public HepAService()
+        //    {
+        //        _ServiceManager = new Maintenance.Business.ServiceManager();
+        //    }
 
-        private ServiceManager _ServiceManager;
+        //    private ServiceManager _ServiceManager;
 
-        [WebMethod]
-        public ActionResult HepAServiceAdd(string name, DateTime firstshot, DateTime? secondshot, string store)
-        {
+        //    [WebMethod]
+        //    //todo rewrite for new database
+        //    public ActionResult HepAServiceAdd(string name, DateTime firstshot, DateTime? secondshot, string store)
+        //    {
 
-            _ServiceManager.ServiceAddRecord(name, firstshot, secondshot, store);
-            return null;
-        }
+        //        _ServiceManager.ServiceAddRecord(name, firstshot, secondshot, store);
+        //        return null;
+        //    }
     }
 }

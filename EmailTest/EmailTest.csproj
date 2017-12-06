@@ -33,7 +33,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,11 +57,20 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Maintenance.Business\Maintenance.Business.csproj">
       <Project>{98792CB2-DEA9-4F30-8CFE-3810801184E6}</Project>
       <Name>Maintenance.Business</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maintenance.Data\Maintenance.Data.csproj">
+      <Project>{4171C5C3-6236-4819-8B1D-067DA4B5799E}</Project>
+      <Name>Maintenance.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Maintenance.Models\Maintenance.Models.csproj">
+      <Project>{d8c5b4bb-47cc-4d49-a48d-46e4b17340f1}</Project>
+      <Name>Maintenance.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

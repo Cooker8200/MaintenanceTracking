@@ -123,14 +123,13 @@ namespace Maintenance.Data.DataAccess
             db.SaveChanges();
 
         }
-
+        //weekly report function
         public List<HepA> WeeklyReport()
         {
-            var HepA_Weekly = db.HepA.Where(x => x.SecondShot == null).OrderBy(y => y.Store).ToList();
-            //var HepA_Weekly = db.Database.SqlQuery<HepA>("hepsp_weekly").ToList();
+            var HepA_Weekly = db.Database.SqlQuery<HepA>("Weeklysp_HepASearch").ToList();
             return HepA_Weekly;
         }
-
+        //weekly report function
         public List<HepA> StoreHepAReport(string input)
         {
             var HepA_Store = db.HepA.Where(x => x.SecondShot == null && x.Store == input).ToList();
@@ -149,20 +148,21 @@ namespace Maintenance.Data.DataAccess
             return SS_Records;
         }
 
-        public string ServiceAddHepA(string name, DateTime firstshot, DateTime? secondshot, string store)
-        {
+        //todo rewrite service for update database
+        //public string ServiceAddHepA(string name, DateTime? firstshot, DateTime? secondshot, string store)
+        //{
 
-                var noSecondShot = new HepA();
-                noSecondShot.EmpName = name;
-                noSecondShot.FirstShot = firstshot;
-                noSecondShot.SecondShot = secondshot;
-                noSecondShot.Store = store;
-                db.HepA.Add(noSecondShot);
-                db.SaveChanges();
+        //        var noSecondShot = new HepA();
+        //    noSecondShot.EmpName = name;
+        //    noSecondShot.FirstShot = firstshot;
+        //        noSecondShot.SecondShot = secondshot;
+        //        noSecondShot.Store = store;
+        //        db.HepA.Add(noSecondShot);
+        //        db.SaveChanges();
 
-            return noSecondShot.EmpName;
-                        
-        }
+        //    return noSecondShot.EmpName;
+
+        //}
         
         
     }

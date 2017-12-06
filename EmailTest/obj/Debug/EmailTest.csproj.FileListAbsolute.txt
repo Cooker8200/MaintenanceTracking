@@ -23,3 +23,5 @@ C:\Users\Jennifer\Desktop\MaintenanceTracking\EmailTest\bin\Debug\System.Web.Web
 C:\Users\Jennifer\Desktop\MaintenanceTracking\EmailTest\obj\Debug\EmailTest.csprojResolveAssemblyReference.cache
 C:\Users\Jennifer\Desktop\MaintenanceTracking\EmailTest\obj\Debug\EmailTest.exe
 C:\Users\Jennifer\Desktop\MaintenanceTracking\EmailTest\obj\Debug\EmailTest.pdb
+C:\Users\Jennifer\Desktop\MaintenanceTracking\EmailTest\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Jennifer\Desktop\MaintenanceTracking\EmailTest\bin\Debug\EntityFramework.SqlServer.xml

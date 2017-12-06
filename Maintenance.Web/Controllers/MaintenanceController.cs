@@ -21,7 +21,7 @@ namespace Maintenance.Web.Controllers
         {
             return View();
         }
-
+        //get all maintenance records
         public ActionResult MaintenanceRecords()
         {
             var MaintenanceList = _maintenanceManager.List();
@@ -32,10 +32,9 @@ namespace Maintenance.Web.Controllers
         {
             return View();
         }
-
+        //create record page
         public ActionResult Create()
         {
-            //ToolsController.Lists();      //todo use/delete
             List<SelectListItem> Store = new List<SelectListItem>();
             Store.Add(new SelectListItem { Text = "University City", Value = "" });
             Store.Add(new SelectListItem { Text = "Ballwin", Value = "2147" });
@@ -97,9 +96,10 @@ namespace Maintenance.Web.Controllers
 
         //}
 
-
+        //create new maintenance record
         public ActionResult CreateRecord(string Store, DateTime ServiceDate, string Vendor, int Invoice, string RepairType, string RepairDetail, string StoreName)
         {
+            //obselete code for getting store name
             //var stores = (List<SelectListItem>)Session["StoreNames"];
             //var store = stores.FirstOrDefault(x => x.Value == Store);
             //var storeName = store.Text;
@@ -116,11 +116,13 @@ namespace Maintenance.Web.Controllers
 
         }
 
+        //search maintenance records
         public ActionResult MaintenanceSearch()
         {
             return View();
         }
 
+        //search partial views
         public ActionResult SearchStore()
         {
             return PartialView("_SearchStore");
@@ -138,6 +140,7 @@ namespace Maintenance.Web.Controllers
             return PartialView("_SearchRepairType");
         }
 
+        //methods to search maintenance records
         public ActionResult StoreRecords(string storetext)  
         {
             var StoreSearchRecords = _maintenanceManager.StoreSearch(storetext);
@@ -145,7 +148,7 @@ namespace Maintenance.Web.Controllers
             if (recordCount == 0)
             {
                 ViewBag.Data = storetext;
-                return PartialView("_NoRecordsFound", storetext);
+                return PartialView("_NoRecordsFound");
             }
             else
             {
@@ -162,7 +165,7 @@ namespace Maintenance.Web.Controllers
             if (recordCount == 0)
             {
                 ViewBag.Data = startdate + " and " + enddate;
-                return PartialView("_NoRecordsFound");
+                return PartialView("_NoecordsDate");
             }
             else
             {
@@ -177,7 +180,7 @@ namespace Maintenance.Web.Controllers
             if (recordCount == 0)
             {
                 ViewBag.Data = vendortext;
-                return PartialView("_NoRecordsFound", vendortext);
+                return PartialView("_NoRecordsFound");
             }
             else
             {
@@ -202,6 +205,7 @@ namespace Maintenance.Web.Controllers
 
         }
 
+        //edit maintenace records
         public ActionResult Edit()
         {
             return View();

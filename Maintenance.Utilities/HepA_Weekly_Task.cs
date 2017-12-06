@@ -31,7 +31,6 @@ namespace Maintenance.Utilities
                 var date = DateTime.Now.ToString("dd-MMM-yyyy");
                 var fileName = date + " Weekly HepA.txt";
                 //create report with all records
-                //todo update path??
                 var path = Path.Combine("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\WeeklyHepA_Report", fileName);
                 FileStream file = File.Create(path);
 
@@ -121,8 +120,7 @@ namespace Maintenance.Utilities
                         message = message.Replace("$$Details$$", "Consult written records to verify accuracy.  No records were returned from database.");
 
                         //send mail message
-                        var sendAddress = ConfigurationManager.AppSettings["Email.Admin"];   //change for prodution -- solution for test only
-                        //var sendAddress = ConfigurationManager.AppSettings["Email." + stores[s].Name];
+                        var sendAddress = stores[s].Email;
                         var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                         var mail = new MailMessage();
                         mail.Body = message;
@@ -155,7 +153,7 @@ namespace Maintenance.Utilities
                         }
                         message = message.Replace("$$Details$$", details.ToString());
 
-                            var sendAddress = ConfigurationManager.AppSettings["Email." + stores[s].Name];
+                            var sendAddress = stores[s].Email;
                             var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                             var mail = new MailMessage();
                             mail.Body = message;
