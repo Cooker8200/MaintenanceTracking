@@ -21,7 +21,7 @@ namespace Maintenance.Utilities
             var dayOfWeek = DateTime.Now.DayOfWeek;
             var dayOfMonth = DateTime.Now.Day;
             //Weekly Hep A Reporting
-            if (dayOfWeek == DayOfWeek.Wednesday)  //todo change for production
+            if (dayOfWeek == DayOfWeek.Thursday)  //todo change for production
             {
                 //create manager and get all HepA records and locations
                 var HepATask = new HepAManager();
@@ -169,9 +169,23 @@ namespace Maintenance.Utilities
                             message = read.ReadToEnd();
                         }
                         message = message.Replace("$$StoreName$$", stores[s].Name);
-                        using (StreamWriter writer = new StreamWriter("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt", false))
+                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))
                         {
-
+                            //get temp info container and setup html table
+                            var body = read.ReadToEnd();
+                            var htmlTableStart = "<table style=\"border:1px solid black;\">";
+                            var htmlTableEnd = "</table>";
+                            var htmlTableTrStart = "<tr style=\"background-color: light gray\">";
+                            var htmlTableTrEnd = "</tr>";
+                            var htmlTableTdStart = "<td>";
+                            var htmlTableTdEnd = "</td>";
+                            var htmlTableThStart = "<th>";
+                            var htmlTableThEnd = "</th>";
+                            body += htmlTableStart;
+                            body += htmlTableThStart + "Name" + htmlTableThEnd;
+                            body += htmlTableThStart + "First Shot" + htmlTableThEnd;
+                            body += htmlTableThStart + "Second Shot" + htmlTableThEnd;
+                            //loop through data set
                             for (var a = 0; a < storeResults.Count(); a++)
                             {
                                 var shortDate = "";
@@ -179,25 +193,24 @@ namespace Maintenance.Utilities
                                 //check for null firstShot
                                 if (storeResults[a].FirstShot == null)
                                 {
-                                    firstShot = "No First Shot Record";
-                                    writer.WriteLine(storeResults[a].Name + " has " + firstShot);
+                                    shortDate = "No First Shot Record";
                                 }
                                 else
                                 {
                                     shortDate = DateTime.Parse(firstShot).ToString("dd, MMM, yyyy");
-                                    writer.WriteLine(storeResults[a].Name + " recieved 1st Hep A on " + shortDate);
-
                                 }
+                                //generate table data
+                                    body += htmlTableTrStart;
+                                    body += htmlTableTdStart + storeResults[a].Name + htmlTableTdEnd;
+                                    body += htmlTableTdStart + shortDate + htmlTableTdEnd;
+                                    body += htmlTableTrEnd;
 
                             }
+                            body += htmlTableEnd;
+                            message = message.Replace("$$Details$$", body);
 
                         }
-                        
-                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))
-                        {
-                            var details = read.ReadToEnd();
-                            message = message.Replace("$$Details$$", details);
-                        }
+                        //send mail
                         var sendAddress = stores[s].Email;
                         if (sendAddress == null)
                         {
@@ -221,6 +234,7 @@ namespace Maintenance.Utilities
                         {
                             smtp.Send(mail);
                         }
+                        smtp.Send(mail);
                     }
                 }
             }
