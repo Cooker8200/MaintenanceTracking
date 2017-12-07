@@ -106,6 +106,7 @@
     <Content Include="Email_Template\HepA_Store_Template.html" />
     <Content Include="Email_Template\HepA_Sup_Template.html" />
     <Content Include="Email_Template\ServSafe_Template.html" />
+    <Content Include="Email_Template\TempInfo.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

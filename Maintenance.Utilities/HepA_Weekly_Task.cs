@@ -130,13 +130,16 @@ namespace Maintenance.Utilities
                             message = read.ReadToEnd();
                         }
                         message = message.Replace("$$StoreName$$", stores[s].Name);
-                        message = message.Replace("$$Details$$", "Consult written records to verify accuracy.  No records were returned from database.");
+                        message = message.Replace("$$Details$$", "No records were found for " + stores[s].Name + ".  Please contact" +
+                            " your OTM to verfiy correct settings");
 
                         //send mail message
                         var sendAddress = stores[s].Email;
+                        //check sendAddress for valid address, if not valid email developer
                         if (sendAddress == null)
                         {
-                            sendAddress = "Cooker8200@hotmail.com";
+                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
+                            
                         }
                         var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                         var mail = new MailMessage();
@@ -151,35 +154,54 @@ namespace Maintenance.Utilities
                         smtp.UseDefaultCredentials = false;
                         smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
                         smtp.EnableSsl = true;
-                        smtp.Send(mail);
+                        //check for production, otherwise no mail sent
+                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
+                        {
+                            smtp.Send(mail);
+                        }                         
                     }
                     
                     if (storeResults.Count() != 0)
                     {
+
                         using (StreamReader read = new StreamReader(emailTemplate))
                         {
                             message = read.ReadToEnd();
                         }
                         message = message.Replace("$$StoreName$$", stores[s].Name);
-                        StringBuilder details = new StringBuilder("").AppendLine();
-                        for (var a = 0; a < storeResults.Count(); a++)
+                        using (StreamWriter writer = new StreamWriter("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt", false))
                         {
-                            
-                            if (storeResults[a].FirstShot == null)
-                            {
-                                storeResults[a].FirstShot = DateTime.Now;
-                            }
-                            var firstShot = storeResults[a].FirstShot.ToString();
-                            var shortDate = DateTime.Parse(firstShot).ToString("dd-MMM-yyyy");
-                            details.Append(storeResults[a].Name + " -- " + shortDate).AppendLine();
-                            details.AppendLine();
-                        }
-                        message = message.Replace("$$Details$$", details.ToString());
 
+                            for (var a = 0; a < storeResults.Count(); a++)
+                            {
+                                var shortDate = "";
+                                var firstShot = storeResults[a].FirstShot.ToString();
+                                //check for null firstShot
+                                if (storeResults[a].FirstShot == null)
+                                {
+                                    firstShot = "No First Shot Record";
+                                    writer.WriteLine(storeResults[a].Name + " has " + firstShot);
+                                }
+                                else
+                                {
+                                    shortDate = DateTime.Parse(firstShot).ToString("dd, MMM, yyyy");
+                                    writer.WriteLine(storeResults[a].Name + " recieved 1st Hep A on " + shortDate);
+
+                                }
+
+                            }
+
+                        }
+                        
+                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))
+                        {
+                            var details = read.ReadToEnd();
+                            message = message.Replace("$$Details$$", details);
+                        }
                         var sendAddress = stores[s].Email;
                         if (sendAddress == null)
                         {
-                            sendAddress = "Cooker8200@hotmail.com";
+                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
                         }
                         var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                         var mail = new MailMessage();
@@ -194,7 +216,11 @@ namespace Maintenance.Utilities
                         smtp.UseDefaultCredentials = false;
                         smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
                         smtp.EnableSsl = true;
-                        smtp.Send(mail);
+                        //check for production, otherwise no mail sent
+                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
+                        {
+                            smtp.Send(mail);
+                        }
                     }
                 }
             }
