@@ -479,16 +479,21 @@ namespace Maintenance.Utilities
                 }
 
             }
+
+            //Additional Features to be built if requested
+            //Monthly repair reporting -- end of month
+            //var month = DateTime.Now.ToString("MM");
+            //var year = DateTime.Now.ToString("yyyy");
+            //var lastDay = DateTime.DaysInMonth(Convert.ToInt32(year), Convert.ToInt32(month));
+            //if (dayOfMonth == lastDay)
+            //{
+
+            //}
+
         }
 
-    ////Monthly repair reporting -- end of month
-    //if (dayOfMonth == 30 || dayOfMonth == 31)   //todo fix for Feb & leap years
-    //{
-    //    //todo finish
-    //}
+    }
 
 }
-
-    }
 
 
