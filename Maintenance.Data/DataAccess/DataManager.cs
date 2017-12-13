@@ -147,6 +147,27 @@ namespace Maintenance.Data.DataAccess
             return HepA_Store;
         }
 
+        //weekly supervisor report
+        public List<HepA_ViewModels> SupervisorWeeklyReport(int supid)
+        {
+            var SupReport = db.Database.SqlQuery<HepA_ViewModels>("Weeklysp_HepASupSearch " + supid).ToList();
+            return SupReport;
+        }
+
+        //get list of supervisors
+        public List<SupervisorList_ViewModel> SupervisorList()
+        {
+            var SupList = db.Database.SqlQuery<SupervisorList_ViewModel>("mainsp_SupList").ToList();
+            return SupList;
+        }
+
+        //monthly servsafe report for stores
+        public List<ServSafe_ViewModels> ServSafeReport(int storeid)
+        {
+            var ServSafeReport = db.Database.SqlQuery<ServSafe_ViewModels>("mainsp_ServSafeReport " + storeid).ToList();
+            return ServSafeReport;
+        }
+
         public List<Stores> StoreList()
         {
             var Stores = db.Stores.ToList();

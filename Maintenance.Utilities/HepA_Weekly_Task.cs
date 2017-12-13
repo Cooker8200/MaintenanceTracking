@@ -21,7 +21,7 @@ namespace Maintenance.Utilities
             var dayOfWeek = DateTime.Now.DayOfWeek;
             var dayOfMonth = DateTime.Now.Day;
             //Weekly Hep A Reporting
-            if (dayOfWeek == DayOfWeek.Thursday)  //todo change for production
+            if (dayOfWeek == DayOfWeek.Saturday || ConfigurationManager.AppSettings["Mode"] == "Test")
             {
                 //create manager and get all HepA records and locations
                 var HepATask = new HepAManager();
@@ -139,7 +139,8 @@ namespace Maintenance.Utilities
                         if (sendAddress == null)
                         {
                             sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
-                            
+                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
+
                         }
                         var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                         var mail = new MailMessage();
@@ -215,6 +216,7 @@ namespace Maintenance.Utilities
                         if (sendAddress == null)
                         {
                             sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
+                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
                         }
                         var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                         var mail = new MailMessage();
@@ -234,24 +236,258 @@ namespace Maintenance.Utilities
                         {
                             smtp.Send(mail);
                         }
-                        smtp.Send(mail);
                     }
                 }
+                //send supervisor report
+                //get sup template
+                var supTemplate = "C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\HepA_Sup_Template.html";
+
+                //get list of supervisors
+                var supList = HepATask.SupervisorList();
+                foreach (var item in supList)
+                {
+                    var supHepAData = HepATask.SupervisorReport(item.id);
+                    if (supHepAData.Count() == 0)
+                    {
+                        using (StreamReader read = new StreamReader(supTemplate))
+                        {
+                            message = read.ReadToEnd();
+                        }
+                        message = message.Replace("$$Supervisor$$", item.name);
+                        message = message.Replace("$$Details$$", "No records were found for your stores.  Please contact" +
+                            " your OTM to verfiy correct settings");
+
+                        //send mail message
+                        var sendAddress = item.Email;
+                        //check sendAddress for valid address, if not valid email developer
+                        if (sendAddress == null)
+                        {
+                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
+                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
+
+                        }
+                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
+                        var mail = new MailMessage();
+                        mail.Body = message;
+                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
+                        mail.To.Add(sendAddress);
+                        mail.Subject = "Weekly Hep A,  " + DateTime.Now.ToString("dd-MM-yyyy") + ", " + item.name;
+                        mail.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
+                        smtp.Port = port;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
+                        smtp.EnableSsl = true;
+                        //check for production, otherwise no mail sent
+                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
+                        {
+                            smtp.Send(mail);
+                        }
+                    }
+
+                    if (supHepAData.Count != 0)
+                    {
+                        using (StreamReader read = new StreamReader(supTemplate))
+                        {
+                            message = read.ReadToEnd();
+                        }
+                        message = message.Replace("$$Supervisor$$", item.name);
+                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))
+                        {
+                            //get temp info container and setup html table
+                            var body = read.ReadToEnd();
+                            var htmlTableStart = "<table style=\"border:1px solid black;\">";
+                            var htmlTableEnd = "</table>";
+                            var htmlTableTrStart = "<tr style=\"background-color: light gray\">";
+                            var htmlTableTrEnd = "</tr>";
+                            var htmlTableTdStart = "<td>";
+                            var htmlTableTdEnd = "</td>";
+                            var htmlTableThStart = "<th>";
+                            var htmlTableThEnd = "</th>";
+                            body += htmlTableStart;
+                            body += htmlTableThStart + "Name" + htmlTableThEnd;
+                            body += htmlTableThStart + "First Shot" + htmlTableThEnd;
+                            body += htmlTableThStart + "Second Shot" + htmlTableThEnd;
+                            //loop through data set
+                            foreach (var data in supHepAData)
+                            {
+                                var shortDate = "";
+                                var firstShot = data.FirstShot.ToString();
+                                //check for null firstShot
+                                if (data.FirstShot == null)
+                                {
+                                    shortDate = "No First Shot Record";
+                                }
+                                else
+                                {
+                                    shortDate = DateTime.Parse(firstShot).ToString("dd, MMM, yyyy");
+                                }
+                                //generate table data
+                                body += htmlTableTrStart;
+                                body += htmlTableTdStart + data.Name + htmlTableTdEnd;
+                                body += htmlTableTdStart + shortDate + htmlTableTdEnd;
+                                body += htmlTableTrEnd;
+
+                            }
+                            body += htmlTableEnd;
+                            message = message.Replace("$$Details$$", body);
+
+                        }
+                        //send mail
+                        var sendAddress = item.Email;
+                        if (sendAddress == null)
+                        {
+                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
+                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
+                        }
+                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
+                        var mail = new MailMessage();
+                        mail.Body = message;
+                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
+                        mail.To.Add(sendAddress);
+                        mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy") + item.name;
+                        mail.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
+                        smtp.Port = port;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
+                        smtp.EnableSsl = true;
+                        //check for production, otherwise no mail sent
+                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
+                        {
+                            smtp.Send(mail);
+                        }
+                    }
+                }
+                
+            }
+
+            //Monthly ServSafe Reporting
+            if (dayOfMonth == 1 || ConfigurationManager.AppSettings["Mode"] == "Test")
+            {
+                var ServSafeTemplate = "C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\ServSafe_Template.html";
+                var message = "";
+                var ServSafeManager = new ServSafeManager();
+                var Stores = ServSafeManager.StoresList();
+                foreach (var item in Stores)
+                {
+                    var ServSafeData = ServSafeManager.ServSafeReport(item.id);
+                    if (ServSafeData.Count() == 0)
+                    {
+                        using (StreamReader read = new StreamReader(ServSafeTemplate))
+                        {
+                            message = read.ReadToEnd();
+                        }
+                        message = message.Replace("$$StoreName$$", item.Name);
+                        message = message.Replace("$$Details$$", "No records were found for your stores.  Please contact" +
+                            " your OTM to verfiy correct settings");
+
+                        //send mail message
+                        var sendAddress = item.Email;
+                        //check sendAddress for valid address, if not valid email developer
+                        if (sendAddress == null)
+                        {
+                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
+                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
+
+                        }
+                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
+                        var mail = new MailMessage();
+                        mail.Body = message;
+                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
+                        mail.To.Add(sendAddress);
+                        mail.Subject = "Weekly Hep A,  " + DateTime.Now.ToString("dd-MM-yyyy") + ", " + item.Name;
+                        mail.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
+                        smtp.Port = port;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
+                        smtp.EnableSsl = true;
+                        //check for production, otherwise no mail sent
+                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
+                        {
+                            smtp.Send(mail);
+                        }
+                    }
+
+                    if (ServSafeData.Count() != 0)
+                    {
+                        using (StreamReader read = new StreamReader(ServSafeTemplate))
+                        {
+                            message = read.ReadToEnd();
+                        }
+                        message = message.Replace("$$StoreName$$", item.Name);
+                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))
+                        {
+                            //get temp info container and setup html table
+                            var body = read.ReadToEnd();
+                            var htmlTableStart = "<table style=\"border:1px solid black;\">";
+                            var htmlTableEnd = "</table>";
+                            var htmlTableTrStart = "<tr style=\"background-color: light gray\">";
+                            var htmlTableTrEnd = "</tr>";
+                            var htmlTableTdStart = "<td>";
+                            var htmlTableTdEnd = "</td>";
+                            var htmlTableThStart = "<th>";
+                            var htmlTableThEnd = "</th>";
+                            body += htmlTableStart;
+                            body += htmlTableThStart + "Name" + htmlTableThEnd;
+                            body += htmlTableThStart + "First Shot" + htmlTableThEnd;
+                            body += htmlTableThStart + "Second Shot" + htmlTableThEnd;
+                            //loop through data set
+                            foreach (var record in ServSafeData)
+                            {
+                                //generate table data
+                                body += htmlTableTrStart;
+                                body += htmlTableTdStart + record.Name + htmlTableTdEnd;
+                                body += htmlTableTdStart + record.Expiration + htmlTableTdEnd;
+                                body += htmlTableTrEnd;
+
+                            }
+                            body += htmlTableEnd;
+                            message = message.Replace("$$Details$$", body);
+
+                        }
+                        //send mail
+                        var sendAddress = item.Email;
+                        if (sendAddress == null)
+                        {
+                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
+                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
+                        }
+                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
+                        var mail = new MailMessage();
+                        mail.Body = message;
+                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
+                        mail.To.Add(sendAddress);
+                        mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy") + item.Name;
+                        mail.IsBodyHtml = true;
+                        SmtpClient smtp = new SmtpClient();
+                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
+                        smtp.Port = port;
+                        smtp.UseDefaultCredentials = false;
+                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
+                        smtp.EnableSsl = true;
+                        //check for production, otherwise no mail sent
+                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
+                        {
+                            smtp.Send(mail);
+                        }
+                    }
+                }
+
             }
         }
-            //Monthly ServSafe Reporting
-            //if (dayOfMonth == 1)
-            //{
-                //todo finish
-                
-            //}
-            ////Monthly repair reporting -- end of month
-            //if (dayOfMonth == 30 || dayOfMonth == 31)   //todo fix for Feb & leap years
-            //{
-            //    //todo finish
-            //}
 
-        }
+    ////Monthly repair reporting -- end of month
+    //if (dayOfMonth == 30 || dayOfMonth == 31)   //todo fix for Feb & leap years
+    //{
+    //    //todo finish
+    //}
+
+}
 
     }
 

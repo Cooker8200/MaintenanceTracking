@@ -37,7 +37,7 @@ namespace Maintenance.Business
                 var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
                 var body = email;
                 var message = new MailMessage();
-                message.To.Add(new MailAddress(ConfigurationManager.AppSettings["Email.SendTo"]));      //change to SendTo upon deployment
+                message.To.Add(new MailAddress(ConfigurationManager.AppSettings["Email.OTP"]));
                 //message.CC.Add(new MailAddress(ConfigurationManager.AppSettings[" "]));               //could change to office email in live
                 message.From = new MailAddress(ConfigurationManager.AppSettings["Email.User"]);
                 message.Subject = string.Format("OTP Request, " + StoreName);
@@ -64,7 +64,6 @@ namespace Maintenance.Business
             catch (Exception ex)
             {
                 Console.WriteLine(ex.Message);
-                Console.ReadKey();
             }
 
 

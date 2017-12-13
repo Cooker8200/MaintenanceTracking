@@ -43,5 +43,17 @@ namespace Maintenance.Business
             var HepA_Store = _dataAccess.StoreHepAReport(input);
             return HepA_Store;
         }
+
+        public List<HepA_ViewModels> SupervisorReport(int supid)
+        {
+            var SupReport = _dataAccess.SupervisorWeeklyReport(supid);
+            return SupReport;
+        }
+
+        public List<SupervisorList_ViewModel> SupervisorList()
+        {
+            var SupList = _dataAccess.SupervisorList();
+            return SupList;
+        }
     }
 }

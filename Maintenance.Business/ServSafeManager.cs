@@ -22,5 +22,16 @@ namespace Maintenance.Business
             var ManagerServSafe = _dataAccess.ServSafeData(searchval);
             return ManagerServSafe;
         }
+
+        public List<Stores> StoresList()
+        {
+            var Stores = _dataAccess.StoreList();
+            return Stores;
+        }
+        public List<ServSafe_ViewModels> ServSafeReport(int storeid)
+        {
+            var ServSafeData = _dataAccess.ServSafeReport(storeid);
+            return ServSafeData;
+        }
     }
 }
