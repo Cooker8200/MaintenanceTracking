@@ -70,7 +70,7 @@ namespace Maintenance.Data.DataAccess
 
         public IEnumerable<MaintenanceLog> DateSearch(string startdate, string enddate)
         {
-            var DataDateSearch = db.MaintenanceLog.SqlQuery("mainsp_datesearch " + " ' " + startdate + " ' " + " , " + " ' " + enddate + " ' ");
+            var DataDateSearch = db.MaintenanceLog.SqlQuery(Constants.MaintDateSearch + " ' " + startdate + " ' " + " , " + " ' " + enddate + " ' ");
             return DataDateSearch;
         }
 
@@ -99,7 +99,7 @@ namespace Maintenance.Data.DataAccess
         public IEnumerable<HepA_ViewModels> HepARecords (int searchval)
         {
             //todo update to take new parameters..change up through application
-            var DataHepA = db.Database.SqlQuery<HepA_ViewModels>("hepsp_search" + " " + searchval).ToList();
+            var DataHepA = db.Database.SqlQuery<HepA_ViewModels>(Constants.HepA_Search + searchval).ToList();
             //var DataHepA = db.HepA.Where(x => x.Store.Contains(searchtext)); --- old method before relational database
             return DataHepA;
         }
@@ -107,14 +107,14 @@ namespace Maintenance.Data.DataAccess
         //search ServSafe records
         public IEnumerable<ServSafe_ViewModels> ServSafeData(int searchval)
         {
-            var DataServSafe = db.Database.SqlQuery<ServSafe_ViewModels>("SSsp_search" + " " + searchval).ToList();
+            var DataServSafe = db.Database.SqlQuery<ServSafe_ViewModels>(Constants.ServSafeSearch + searchval).ToList();
             //var DataServSafe = db.ServSafe.Where(x => x.Store.Contains(searchtext)); --- old method before relational database
             return DataServSafe;
         }
 
         public IEnumerable<MaintenanceLog> EditSearch (string searchtext1, string searchtext2)
         {
-            var DataEditSearch = db.Database.SqlQuery<MaintenanceLog>("mainsp_editsearch " + " '" + searchtext1 + "' " + " , " + " '" + searchtext2 + "' ");
+            var DataEditSearch = db.Database.SqlQuery<MaintenanceLog>(Constants.MaintEditSearch + " '" + searchtext1 + "' " + " , " + " '" + searchtext2 + "' ");
             //var DataEditSearch = db.MaintenanceLog.Where(x => x.StoreName.Contains(searchtext1) && x.StoreName);  //use and
             return DataEditSearch;
         }
@@ -135,14 +135,14 @@ namespace Maintenance.Data.DataAccess
         //weekly report function
         public IEnumerable<HepA_ViewModels> WeeklyReport()
         {
-            var HepA_Weekly = db.Database.SqlQuery<HepA_ViewModels>("Weeklysp_HepASearch").ToList();
+            var HepA_Weekly = db.Database.SqlQuery<HepA_ViewModels>(Constants.HepA_Report_Weekly).ToList();
             return HepA_Weekly;
         }
     
         //weekly report function
         public List<HepA_ViewModels> StoreHepAReport(int input)
         {
-            var HepA_Store = db.Database.SqlQuery<HepA_ViewModels>("Weeklysp_HepA_StoreRecords " + input).ToList();
+            var HepA_Store = db.Database.SqlQuery<HepA_ViewModels>(Constants.StoreHepA_Report_Weekly + input).ToList();
             //var HepA_Store = db.HepA.Where(x => x.SecondShot == null && x.Store == input).ToList();
             return HepA_Store;
         }
@@ -150,21 +150,21 @@ namespace Maintenance.Data.DataAccess
         //weekly supervisor report
         public List<HepA_ViewModels> SupervisorWeeklyReport(int supid)
         {
-            var SupReport = db.Database.SqlQuery<HepA_ViewModels>("Weeklysp_HepASupSearch " + supid).ToList();
+            var SupReport = db.Database.SqlQuery<HepA_ViewModels>(Constants.SupervisorHepA_Report_Weekly + supid).ToList();
             return SupReport;
         }
 
         //get list of supervisors
         public List<SupervisorList_ViewModel> SupervisorList()
         {
-            var SupList = db.Database.SqlQuery<SupervisorList_ViewModel>("mainsp_SupList").ToList();
+            var SupList = db.Database.SqlQuery<SupervisorList_ViewModel>(Constants.SupervisorList).ToList();
             return SupList;
         }
 
         //monthly servsafe report for stores
         public List<ServSafe_ViewModels> ServSafeReport(int storeid)
         {
-            var ServSafeReport = db.Database.SqlQuery<ServSafe_ViewModels>("mainsp_ServSafeReport " + storeid).ToList();
+            var ServSafeReport = db.Database.SqlQuery<ServSafe_ViewModels>(Constants.ServSafeReport_Weekly + storeid).ToList();
             return ServSafeReport;
         }
 

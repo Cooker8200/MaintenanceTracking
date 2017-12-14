@@ -14,7 +14,7 @@ namespace Maintenance.Business
 {
     public class ContactManager
     {
-
+        //OTP contact
         public void SendOtp(string SendTo, string Name, string Equipment, string Location, string Problem, string StoreName)
         {
             //create email template
@@ -38,7 +38,8 @@ namespace Maintenance.Business
                 var body = email;
                 var message = new MailMessage();
                 message.To.Add(new MailAddress(ConfigurationManager.AppSettings["Email.OTP"]));
-                //message.CC.Add(new MailAddress(ConfigurationManager.AppSettings[" "]));               //could change to office email in live
+                //message.CC.Add(new MailAddress(SendTo));                                              //copy store on support request
+                //message.CC.Add(new MailAddress(ConfigurationManager.AppSettings[" "]));               //copy office if urgent
                 message.From = new MailAddress(ConfigurationManager.AppSettings["Email.User"]);
                 message.Subject = string.Format("OTP Request, " + StoreName);
                 message.Body = body;
@@ -69,6 +70,36 @@ namespace Maintenance.Business
 
 
         }
+
+        //Send email for Scheduled task
+        public void ScheduledEmail(string sendAddress, string message)
+        {
+            if (sendAddress == null)
+            {
+                sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
+                message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
+
+            }
+            var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
+            var mail = new MailMessage();
+            mail.Body = message;
+            mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
+            mail.To.Add(sendAddress);
+            mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy");
+            mail.IsBodyHtml = true;
+            SmtpClient smtp = new SmtpClient();
+            smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
+            smtp.Port = port;
+            smtp.UseDefaultCredentials = false;
+            smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
+            smtp.EnableSsl = true;
+            //check for production, otherwise no mail sent
+            if (ConfigurationManager.AppSettings["Mode"] == "Prod")
+            {
+                smtp.Send(mail);
+            }
+        }
+
 
          //!!! Old Contact Form !!!
         //public void SendOtp(Maintenance.Models.OtpRequest model)

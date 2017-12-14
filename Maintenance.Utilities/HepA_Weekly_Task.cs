@@ -18,21 +18,23 @@ namespace Maintenance.Utilities
     {
         public static void Main(string[] args)
         {
+            //initialize managers
+            var Contact = new ContactManager();
+            var HepATask = new HepAManager();
+            var ServSafeManager = new ServSafeManager();
+            var message = "";
             var dayOfWeek = DateTime.Now.DayOfWeek;
             var dayOfMonth = DateTime.Now.Day;
             //Weekly Hep A Reporting
             if (dayOfWeek == DayOfWeek.Saturday || ConfigurationManager.AppSettings["Mode"] == "Test")
             {
-                //create manager and get all HepA records and locations
-                var HepATask = new HepAManager();
                 var records = HepATask.WeeklyReport();
                 var stores = HepATask.StoreList();
                 //create file and write records results to file
-                var message = "";
                 var date = DateTime.Now.ToString("dd-MMM-yyyy");
                 var fileName = date + " Weekly HepA.txt";
                 //create report with all records
-                var path = Path.Combine("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\WeeklyHepA_Report", fileName);
+                var path = Path.Combine("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\WeeklyHepA_Report", fileName);//todo
                 FileStream file = File.Create(path);
 
                 using (StreamWriter write = new StreamWriter(file))
@@ -117,7 +119,7 @@ namespace Maintenance.Utilities
                 }
 
                 //search records by store and send individual email for issues
-                var emailTemplate = "C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\HepA_Store_Template.html";
+                var emailTemplate = "C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\HepA_Store_Template.html";//todo
                 for (var s = 0; s < stores.Count(); s++)
                 {
                     //get specific store information
@@ -135,31 +137,7 @@ namespace Maintenance.Utilities
 
                         //send mail message
                         var sendAddress = stores[s].Email;
-                        //check sendAddress for valid address, if not valid email developer
-                        if (sendAddress == null)
-                        {
-                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
-                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
-
-                        }
-                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
-                        var mail = new MailMessage();
-                        mail.Body = message;
-                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
-                        mail.To.Add(sendAddress);
-                        mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy");
-                        mail.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
-                        smtp.Port = port;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
-                        smtp.EnableSsl = true;
-                        //check for production, otherwise no mail sent
-                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
-                        {
-                            smtp.Send(mail);
-                        }                         
+                        Contact.ScheduledEmail(sendAddress, message);                      
                     }
                     
                     if (storeResults.Count() != 0)
@@ -170,7 +148,7 @@ namespace Maintenance.Utilities
                             message = read.ReadToEnd();
                         }
                         message = message.Replace("$$StoreName$$", stores[s].Name);
-                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))
+                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))//todo
                         {
                             //get temp info container and setup html table
                             var body = read.ReadToEnd();
@@ -213,34 +191,12 @@ namespace Maintenance.Utilities
                         }
                         //send mail
                         var sendAddress = stores[s].Email;
-                        if (sendAddress == null)
-                        {
-                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
-                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
-                        }
-                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
-                        var mail = new MailMessage();
-                        mail.Body = message;
-                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
-                        mail.To.Add(sendAddress);
-                        mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy");
-                        mail.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
-                        smtp.Port = port;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
-                        smtp.EnableSsl = true;
-                        //check for production, otherwise no mail sent
-                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
-                        {
-                            smtp.Send(mail);
-                        }
+                        Contact.ScheduledEmail(sendAddress, message);
                     }
                 }
                 //send supervisor report
                 //get sup template
-                var supTemplate = "C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\HepA_Sup_Template.html";
+                var supTemplate = "C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\HepA_Sup_Template.html";//todo
 
                 //get list of supervisors
                 var supList = HepATask.SupervisorList();
@@ -259,31 +215,7 @@ namespace Maintenance.Utilities
 
                         //send mail message
                         var sendAddress = item.Email;
-                        //check sendAddress for valid address, if not valid email developer
-                        if (sendAddress == null)
-                        {
-                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
-                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
-
-                        }
-                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
-                        var mail = new MailMessage();
-                        mail.Body = message;
-                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
-                        mail.To.Add(sendAddress);
-                        mail.Subject = "Weekly Hep A,  " + DateTime.Now.ToString("dd-MM-yyyy") + ", " + item.name;
-                        mail.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
-                        smtp.Port = port;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
-                        smtp.EnableSsl = true;
-                        //check for production, otherwise no mail sent
-                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
-                        {
-                            smtp.Send(mail);
-                        }
+                        Contact.ScheduledEmail(sendAddress, message);
                     }
 
                     if (supHepAData.Count != 0)
@@ -293,7 +225,7 @@ namespace Maintenance.Utilities
                             message = read.ReadToEnd();
                         }
                         message = message.Replace("$$Supervisor$$", item.name);
-                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))
+                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))//todo
                         {
                             //get temp info container and setup html table
                             var body = read.ReadToEnd();
@@ -336,29 +268,7 @@ namespace Maintenance.Utilities
                         }
                         //send mail
                         var sendAddress = item.Email;
-                        if (sendAddress == null)
-                        {
-                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
-                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
-                        }
-                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
-                        var mail = new MailMessage();
-                        mail.Body = message;
-                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
-                        mail.To.Add(sendAddress);
-                        mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy") + item.name;
-                        mail.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
-                        smtp.Port = port;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
-                        smtp.EnableSsl = true;
-                        //check for production, otherwise no mail sent
-                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
-                        {
-                            smtp.Send(mail);
-                        }
+                        Contact.ScheduledEmail(sendAddress, message);
                     }
                 }
                 
@@ -367,9 +277,7 @@ namespace Maintenance.Utilities
             //Monthly ServSafe Reporting
             if (dayOfMonth == 1 || ConfigurationManager.AppSettings["Mode"] == "Test")
             {
-                var ServSafeTemplate = "C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\ServSafe_Template.html";
-                var message = "";
-                var ServSafeManager = new ServSafeManager();
+                var ServSafeTemplate = "C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\ServSafe_Template.html";//todo
                 var Stores = ServSafeManager.StoresList();
                 foreach (var item in Stores)
                 {
@@ -386,31 +294,7 @@ namespace Maintenance.Utilities
 
                         //send mail message
                         var sendAddress = item.Email;
-                        //check sendAddress for valid address, if not valid email developer
-                        if (sendAddress == null)
-                        {
-                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
-                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
-
-                        }
-                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
-                        var mail = new MailMessage();
-                        mail.Body = message;
-                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
-                        mail.To.Add(sendAddress);
-                        mail.Subject = "Weekly Hep A,  " + DateTime.Now.ToString("dd-MM-yyyy") + ", " + item.Name;
-                        mail.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
-                        smtp.Port = port;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
-                        smtp.EnableSsl = true;
-                        //check for production, otherwise no mail sent
-                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
-                        {
-                            smtp.Send(mail);
-                        }
+                        Contact.ScheduledEmail(sendAddress, message);
                     }
 
                     if (ServSafeData.Count() != 0)
@@ -420,7 +304,7 @@ namespace Maintenance.Utilities
                             message = read.ReadToEnd();
                         }
                         message = message.Replace("$$StoreName$$", item.Name);
-                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))
+                        using (StreamReader read = new StreamReader("C:\\Users\\Jennifer\\Desktop\\MaintenanceTracking\\Maintenance.Utilities\\Email_Template\\TempInfo.txt"))//todo
                         {
                             //get temp info container and setup html table
                             var body = read.ReadToEnd();
@@ -452,29 +336,7 @@ namespace Maintenance.Utilities
                         }
                         //send mail
                         var sendAddress = item.Email;
-                        if (sendAddress == null)
-                        {
-                            sendAddress = ConfigurationManager.AppSettings["Email.OTM"];
-                            message += "<p style=font-weight:\"bold\"> Incorrect Email Address.  Please contact supervisor to verify <p>";
-                        }
-                        var port = Convert.ToInt32(ConfigurationManager.AppSettings["Email.Port"]);
-                        var mail = new MailMessage();
-                        mail.Body = message;
-                        mail.From = new MailAddress(ConfigurationManager.AppSettings["Email.From"]);
-                        mail.To.Add(sendAddress);
-                        mail.Subject = "Weekly Hep A  " + DateTime.Now.ToString("dd-MM-yyyy") + item.Name;
-                        mail.IsBodyHtml = true;
-                        SmtpClient smtp = new SmtpClient();
-                        smtp.Host = ConfigurationManager.AppSettings["Email.Host"];
-                        smtp.Port = port;
-                        smtp.UseDefaultCredentials = false;
-                        smtp.Credentials = new NetworkCredential(ConfigurationManager.AppSettings["Email.User"], ConfigurationManager.AppSettings["Email.Password"]);
-                        smtp.EnableSsl = true;
-                        //check for production, otherwise no mail sent
-                        if (ConfigurationManager.AppSettings["Mode"] == "Prod")
-                        {
-                            smtp.Send(mail);
-                        }
+                        Contact.ScheduledEmail(sendAddress, message);
                     }
                 }
 

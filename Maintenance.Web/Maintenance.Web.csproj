@@ -236,6 +236,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\EditPage.js" />
     <Content Include="Scripts\EditStepTwo.js" />
     <Content Include="Scripts\HepAScripts.js" />
     <Content Include="Scripts\HepA_List.js" />

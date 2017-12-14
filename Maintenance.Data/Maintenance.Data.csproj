@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataAccess\Constants.cs" />
     <Compile Include="DataAccess\DataManager.cs" />
     <Compile Include="DataContext.cs" />
     <Compile Include="Migrations\201710102054352_ServSafe.cs" />

@@ -36,20 +36,20 @@ namespace Maintenance.Web.Controllers
         public ActionResult Create()
         {
             List<SelectListItem> Store = new List<SelectListItem>();
-            Store.Add(new SelectListItem { Text = "University City", Value = "" });
+            Store.Add(new SelectListItem { Text = "University City", Value = "670" });
             Store.Add(new SelectListItem { Text = "Ballwin", Value = "2147" });
-            Store.Add(new SelectListItem { Text = "Dorsett", Value = "" });
+            Store.Add(new SelectListItem { Text = "Dorsett", Value = "2216" });
             Store.Add(new SelectListItem { Text = "Ashby", Value = "2750" });
             Store.Add(new SelectListItem { Text = "Lindell", Value = "" });
-            Store.Add(new SelectListItem { Text = "Olivette", Value = "" });
-            Store.Add(new SelectListItem { Text = "Clarkson", Value = "" });
-            Store.Add(new SelectListItem { Text = "141", Value = "" });
+            Store.Add(new SelectListItem { Text = "Olivette", Value = "6109" });
+            Store.Add(new SelectListItem { Text = "Clarkson", Value = "7678" });
+            Store.Add(new SelectListItem { Text = "141", Value = "7990" });
             Store.Add(new SelectListItem { Text = "Overland Plaza", Value = "11003" });
-            Store.Add(new SelectListItem { Text = "Howdershell", Value = "" });
-            Store.Add(new SelectListItem { Text = "Earth City", Value = "" });
-            Store.Add(new SelectListItem { Text = "Creve Coeur", Value = " " });
+            Store.Add(new SelectListItem { Text = "Howdershell", Value = "20318" });
+            Store.Add(new SelectListItem { Text = "Earth City", Value = "26172" });
+            Store.Add(new SelectListItem { Text = "Creve Coeur", Value = "31264" });
             Store.Add(new SelectListItem { Text = "St John's", Value = "32869" });
-            Store.Add(new SelectListItem { Text = "Ellisville", Value = "" });
+            Store.Add(new SelectListItem { Text = "Ellisville", Value = "34125" });
             Store.Add(new SelectListItem { Text = "Office", Value = "9999" });
             ViewBag.Store = Store;
             //Session["StoreNames"] = Store;
@@ -226,20 +226,20 @@ namespace Maintenance.Web.Controllers
         public ActionResult EditRecord (int? id)
         {
             List<SelectListItem> Store = new List<SelectListItem>();
-            Store.Add(new SelectListItem { Text = "University City", Value = "" });
+            Store.Add(new SelectListItem { Text = "University City", Value = "670" });
             Store.Add(new SelectListItem { Text = "Ballwin", Value = "2147" });
-            Store.Add(new SelectListItem { Text = "Dorsett", Value = "" });
+            Store.Add(new SelectListItem { Text = "Dorsett", Value = "2216" });
             Store.Add(new SelectListItem { Text = "Ashby", Value = "2750" });
             Store.Add(new SelectListItem { Text = "Lindell", Value = "" });
-            Store.Add(new SelectListItem { Text = "Olivette", Value = "" });
-            Store.Add(new SelectListItem { Text = "Clarkson", Value = "" });
-            Store.Add(new SelectListItem { Text = "141", Value = "" });
+            Store.Add(new SelectListItem { Text = "Olivette", Value = "6109" });
+            Store.Add(new SelectListItem { Text = "Clarkson", Value = "7678" });
+            Store.Add(new SelectListItem { Text = "141", Value = "7990" });
             Store.Add(new SelectListItem { Text = "Overland Plaza", Value = "11003" });
-            Store.Add(new SelectListItem { Text = "Howdershell", Value = "" });
-            Store.Add(new SelectListItem { Text = "Earth City", Value = "" });
-            Store.Add(new SelectListItem { Text = "Creve Coeur", Value = " " });
+            Store.Add(new SelectListItem { Text = "Howdershell", Value = "20318" });
+            Store.Add(new SelectListItem { Text = "Earth City", Value = "26172" });
+            Store.Add(new SelectListItem { Text = "Creve Coeur", Value = "31264" });
             Store.Add(new SelectListItem { Text = "St John's", Value = "32869" });
-            Store.Add(new SelectListItem { Text = "Ellisville", Value = "" });
+            Store.Add(new SelectListItem { Text = "Ellisville", Value = "34125" });
             Store.Add(new SelectListItem { Text = "Office", Value = "9999" });
             ViewBag.Store = Store;
             Session["StoreNames"] = Store;
@@ -263,7 +263,7 @@ namespace Maintenance.Web.Controllers
             var MaintRecord = _maintenanceManager.ManagerFindId(id);
             return View(MaintRecord);
         }
-
+        //todo fix edit save function
         public ActionResult SaveRecord (MaintenanceLog model)
         {
             if (ModelState.IsValid)
