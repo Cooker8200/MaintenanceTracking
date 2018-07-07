@@ -1,44 +1,55 @@
 ﻿@using Maintenance.Web.Models
 @model LoginViewModel
 
-<h3 class="main_header">Banducci Enterprises</h3>
+<h3 class="main_header">Christian Foods</h3>
 <hr />
 
 @if (User.Identity.IsAuthenticated)
 {
-    <div id="content">
-        <div class="col-md-6" id="login_box">
+<div id="content">
+    <div class="col-md-6" id="login_box">
 
-            <h4 style="margin-left: 10%; font-weight:400 ;">Maintenance Home</h4>
+        <h4 style="margin-left: 10%; font-weight:400 ;">Maintenance Home</h4>
 
-            <a href="@Url.Action("MaintenanceHome", "Maintenance")" id="otp_button">Go To Maintenance App</a>
+        <a href="@Url.Action("MaintenanceHome", "Maintenance")" id="otp_button">Go To Maintenance App</a>
 
-        </div>
-
-        <div class="col-md-6" id="login_box">
-
-            <h4 style="margin-left: 10%; font-weight: 400;">Send Technology Help Request</h4>
-
-            <a href="@Url.Action("OtpRequest", "OTP")" id="otp_button">Start an OTP Help Request</a>
-
-        </div>
-
-        <div class="col-md-6" id="login_box">
-
-            <h4 style="margin-left: 10%; font-weight: 400;">Hep A Records</h4>
-
-            <a href="@Url.Action("HepAHome", "HepA")" id="otp_button">Hep A Records</a>
-
-        </div>
-
-        <div class="col-md-6" id="login_box">
-
-            <h4 style="margin-left: 10%; font-weight: 400;">ServSafe Records</h4>
-
-            <a href="@Url.Action("ServSafeHome", "ServSafe")" id="otp_button">ServSafe Records</a>
-
-        </div>
     </div>
+
+    <div class="col-md-6" id="login_box">
+
+        <h4 style="margin-left: 10%; font-weight: 400;">Send Technology Help Request</h4>
+
+        <a href="@Url.Action("OtpRequest", "OTP")" id="otp_button">Start an OTP Help Request</a>
+
+    </div>
+
+    <div class="col-md-6" id="login_box">
+
+        <h4 style="margin-left: 10%; font-weight: 400;">Hep A Records</h4>
+
+        <a href="@Url.Action("HepAHome", "HepA")" id="otp_button">Hep A Records</a>
+
+    </div>
+
+    <div class="col-md-6" id="login_box">
+
+        <h4 style="margin-left: 10%; font-weight: 400;">ServSafe Records</h4>
+
+        <a href="@Url.Action("ServSafeHome", "ServSafe")" id="otp_button">ServSafe Records</a>
+
+    </div>
+    @if(User.IsInRole("Admin")){
+
+        <div class="col-md-6" id="login_box">
+
+            <h4 style="margin-left: 10%; font-weight: 400;">Register New User</h4>
+
+            <a href="@Url.Action("Register", "Account")" id="otp_button">Register New User</a>
+
+        </div>
+    }
+
+</div>
 
 }
 
